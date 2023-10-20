@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('first_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('login_id', 255)->unique();
-            $table->string('password', 255);
+            $table->string('name', 50);
             $table->datetimeTz('created_at');
             $table->datetimeTz('updated_at');
         });
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('first_categories');
     }
 };
