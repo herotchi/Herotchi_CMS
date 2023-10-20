@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->string('login_id', 255)->unique();
-            $table->string('password', 255);
+            $table->tinyInteger('media_flg')->unsigned();
+            $table->string('image', 255);
+            $table->string('alt', 100);
+            $table->string('url', 255);
+            $table->tinyInteger('release_flg')->default(2)->unsigned();
             $table->datetimeTz('created_at');
             $table->datetimeTz('updated_at');
         });
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('media');
     }
 };

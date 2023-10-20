@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('login_id', 255)->unique();
-            $table->string('password', 255);
+            $table->foreignId('first_category_id')->constrained();
+            $table->foreignId('second_category_id')->constrained();
+            $table->string('name', 50);
+            $table->string('image', 255);
+            $table->text('detail');
+            $table->tinyInteger('release_flg')->default(2)->unsigned();
             $table->datetimeTz('created_at');
             $table->datetimeTz('updated_at');
         });
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('products');
     }
 };
