@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\TopController as AdminTopController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin/', [AdminTopController::class, 'top'])->name('top');
+Route::get('/admin/', [AdminTopController::class, 'top'])->name('admin.top');
+
+Route::get('/admin/news/add', [AdminNewsController::class, 'add'])->name('admin.news.add');
+Route::post('/admin/news/insert', [AdminNewsController::class, 'insert'])->name('admin.news.insert');
+Route::get('/admin/news/list', [AdminNewsController::class, 'list'])->name('admin.news.list');
