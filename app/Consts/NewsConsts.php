@@ -20,4 +20,6 @@ class NewsConsts
         self::RELEASE_FLG_ON => '表示',
         self::RELEASE_FLG_OFF => '非表示',
     ];
+
+    public const PAGENATE_LIST_LIMIT = 2;
 }

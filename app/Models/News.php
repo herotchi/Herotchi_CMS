@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Consts\NewsConsts;
+use Illuminate\Support\Arr;
 
 class News extends Model
 {
@@ -36,5 +37,31 @@ class News extends Model
         $this->fill($data);
 
         $this->save();
+    }
+
+
+    public function getAdminList(array $data)
+    {
+        $query = $this::query();
+
+        $query->when(Arr::exists($data, 'title') && $data['title'], function ($query) use ($data) {
+            return $query->where('title', 'like', "%{$data['title']}%");
+        });
+
+        $query->when(Arr::exists($data, 'release_date_from') && $data['release_date_from'], function ($query) use ($data) {
+            return $query->where('release_date', '>=',  $data['release_date_from']);
+        });
+
+        $query->when(Arr::exists($data, 'release_date_to') && $data['release_date_to'], function ($query) use ($data) {
+            return $query->where('release_date', '<=',  $data['release_date_to']);
+        });
+
+        $query->when(Arr::exists($data, 'release_flg') && $data['release_flg'], function ($query) use ($data) {
+            return $query->whereIn('release_flg', $data['release_flg']);
+        });
+
+        $lists = $query->paginate(NewsConsts::PAGENATE_LIST_LIMIT);
+
+        return $lists;
     }
 }
