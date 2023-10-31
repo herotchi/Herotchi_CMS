@@ -26,3 +26,4 @@ Route::get('/admin/', [AdminTopController::class, 'top'])->name('admin.top');
 Route::get('/admin/news/add', [AdminNewsController::class, 'add'])->name('admin.news.add');
 Route::post('/admin/news/insert', [AdminNewsController::class, 'insert'])->name('admin.news.insert');
 Route::get('/admin/news/list', [AdminNewsController::class, 'list'])->name('admin.news.list');
+Route::get('/admin/news/{id}', [AdminNewsController::class, 'detail'])->name('admin.news.detail');

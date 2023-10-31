@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\News\AddRequest;
+use App\Http\Requests\Admin\News\ListRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\News;
@@ -30,8 +31,19 @@ class NewsController extends Controller
     }
 
 
-    public function list()
+    public function list(ListRequest $request)
+    {
+        $input = $request->validated();
+        $model = new News();
+        $lists = $model->getAdminList($input);
+
+        return view('admin.news.list', compact(['lists', 'input']));
+    }
+
+
+    public function detail($id)
     {
 
     }
+
 }
