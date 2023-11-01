@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\News\AddRequest;
 use App\Http\Requests\Admin\News\ListRequest;
 
@@ -44,6 +45,24 @@ class NewsController extends Controller
     public function detail($id)
     {
 
+        $validator = Validator::make(
+            ['id' => $id],
+            ['id' => 'bail|required|integer|exists:news']
+        );
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.news.list')->with('msg_failure', '不正な値が入力されました。');
+        }
+
+        $model = new News();
+        $detail = $model->find($id);
+
+        return view('admin.news.detail', compact('detail'));
     }
 
+
+    public function edit($id)
+    {
+        var_dump(__LINE__);
+    }
 }
