@@ -81,4 +81,10 @@ class News extends Model
         $news->save();
     }
 
+
+    public function deleteNews(array $data)
+    {
+        $news = $this::find($data['id']);
+        $news->delete();
+    }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\News\AddRequest;
 use App\Http\Requests\Admin\News\ListRequest;
 use App\Http\Requests\Admin\News\EditRequest;
+use App\Http\Requests\Admin\News\DeleteRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\News;
@@ -88,6 +89,16 @@ class NewsController extends Controller
         });
 
         return redirect()->route('admin.news.list')->with('msg_success', 'お知らせを編集しました。');
+    }
 
+
+    public function delete(DeleteRequest $request)
+    {
+        DB::transaction(function () use ($request) {
+            $model = new News();
+            $model->deleteNews($request->validated());
+        });
+
+        return redirect()->route('admin.news.list')->with('msg_success', 'お知らせを削除しました。');
     }
 }

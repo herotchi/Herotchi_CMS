@@ -29,3 +29,4 @@ Route::get('/admin/news/list', [AdminNewsController::class, 'list'])->name('admi
 Route::get('/admin/news/{id}', [AdminNewsController::class, 'detail'])->name('admin.news.detail');
 Route::get('/admin/news/edit/{id}', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
 Route::post('/admin/news/update', [AdminNewsController::class, 'update'])->name('admin.news.update');
+Route::post('/admin/news/delete', [AdminNewsController::class, 'delete'])->name('admin.news.delete');
