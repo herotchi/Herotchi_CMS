@@ -64,4 +64,21 @@ class News extends Model
 
         return $lists;
     }
+
+
+    public function updateNews(array $data)
+    {
+        $news = $this::find($data['id']);
+        if ($data['link_flg'] == NewsConsts::LINK_FLG_ON) {
+            $news->url = $data['url'];
+            $news->overview = null;
+        } elseif ($data['link_flg'] == NewsConsts::LINK_FLG_OFF) {
+            $news->overview = $data['overview'];
+            $news->url = null;
+        }
+
+        $news->fill($data);
+        $news->save();
+    }
+
 }

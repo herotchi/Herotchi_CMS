@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\News\AddRequest;
 use App\Http\Requests\Admin\News\ListRequest;
+use App\Http\Requests\Admin\News\EditRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\News;
@@ -63,6 +64,30 @@ class NewsController extends Controller
 
     public function edit($id)
     {
-        var_dump(__LINE__);
+        $validator = Validator::make(
+            ['id' => $id],
+            ['id' => 'bail|required|integer|exists:news']
+        );
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.news.list')->with('msg_failure', '不正な値が入力されました。');
+        }
+
+        $model = new News();
+        $detail = $model->find($id);
+
+        return view('admin.news.edit', compact('detail'));
+    }
+
+
+    public function update(EditRequest $request)
+    {
+        DB::transaction(function () use ($request) {
+            $model = new News();
+            $model->updateNews($request->validated());
+        });
+
+        return redirect()->route('admin.news.list')->with('msg_success', 'お知らせを編集しました。');
+
     }
 }
