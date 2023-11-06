@@ -35,5 +35,7 @@ Route::post('/admin/news/delete', [AdminNewsController::class, 'delete'])->name(
 Route::get('/admin/first_category/add', [AdminFirstCategorayController::class, 'add'])->name('admin.first_category.add');
 Route::post('/admin/first_category/insert', [AdminFirstCategorayController::class, 'insert'])->name('admin.first_category.insert');
 Route::get('/admin/first_category/list', [AdminFirstCategorayController::class, 'list'])->name('admin.first_category.list');
+Route::get('/admin/first_category/{id}', [AdminFirstCategorayController::class, 'detail'])->name('admin.first_category.detail');
 Route::get('/admin/first_category/edit/{id}', [AdminFirstCategorayController::class, 'edit'])->name('admin.first_category.edit');
 Route::post('/admin/first_category/update', [AdminFirstCategorayController::class, 'update'])->name('admin.first_category.update');
+Route::post('/admin/first_category/delete', [AdminFirstCategorayController::class, 'delete'])->name('admin.first_category.delete');
