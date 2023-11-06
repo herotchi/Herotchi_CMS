@@ -35,3 +35,4 @@ Route::post('/admin/news/delete', [AdminNewsController::class, 'delete'])->name(
 Route::get('/admin/first_category/add', [AdminFirstCategorayController::class, 'add'])->name('admin.first_category.add');
 Route::post('/admin/first_category/insert', [AdminFirstCategorayController::class, 'insert'])->name('admin.first_category.insert');
 Route::get('/admin/first_category/list', [AdminFirstCategorayController::class, 'list'])->name('admin.first_category.list');
+Route::get('/admin/first_category/edit/{id}', [AdminFirstCategorayController::class, 'edit'])->name('admin.first_category.edit');

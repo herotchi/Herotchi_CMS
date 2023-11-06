@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\FirstCategory\AddRequest;
+use App\Http\Requests\Admin\FirstCategory\ListRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\FirstCategory;
@@ -30,8 +31,18 @@ class FirstCategoryController extends Controller
     }
 
 
-    public function list()
+    public function list(ListRequest $request)
     {
-        var_dump(__LINE__);
+        $input = $request->validated();
+        $model = new FirstCategory();
+        $lists = $model->getAdminList($input);
+
+        return view('admin.first_category.list', compact(['lists', 'input']));
+    }
+
+
+    public function edit()
+    {
+        
     }
 }
