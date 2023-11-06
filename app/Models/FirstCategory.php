@@ -40,4 +40,13 @@ class FirstCategory extends Model
 
         return $lists;
     }
+
+
+    public function updateFirstCategory(array $data)
+    {
+        $firstCategory = $this::find($data['id']);
+
+        $firstCategory->fill($data);
+        $firstCategory->save();
+    }
 }
