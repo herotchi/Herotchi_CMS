@@ -49,4 +49,11 @@ class FirstCategory extends Model
         $firstCategory->fill($data);
         $firstCategory->save();
     }
+
+
+    public function deleteFirstCategory(array $data)
+    {
+        $firstCategory = $this::find($data['id']);
+        $firstCategory->delete();
+    }
 }
