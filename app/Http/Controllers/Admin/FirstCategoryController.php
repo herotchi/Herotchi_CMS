@@ -42,6 +42,25 @@ class FirstCategoryController extends Controller
     }
 
 
+    public function detail($id)
+    {
+
+        $validator = Validator::make(
+            ['id' => $id],
+            ['id' => 'bail|required|integer|exists:first_categories']
+        );
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.first_category.list')->with('msg_failure', '不正な値が入力されました。');
+        }
+
+        $model = new FirstCategory();
+        $detail = $model->find($id);
+
+        return view('admin.first_category.detail', compact('detail'));
+    }
+
+
     public function edit($id)
     {
         $validator = Validator::make(
