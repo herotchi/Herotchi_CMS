@@ -61,4 +61,11 @@ class SecondCategory extends Model
         $secondCategory->fill($data);
         $secondCategory->save();
     }
+
+
+    public function deleteSecondCategory(array $data)
+    {
+        $secondCategory = $this::find($data['id']);
+        $secondCategory->delete();
+    }
 }
