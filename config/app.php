@@ -185,6 +185,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'NewsConsts' => App\Consts\NewsConsts::class,
         'FirstCategoryConsts' => App\Consts\FirstCategoryConsts::class,
+        'SecondCategoryConsts' => App\Consts\SecondCategoryConsts::class,
     ])->toArray(),
 
 ];

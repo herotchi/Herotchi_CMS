@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TopController as AdminTopController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\FirstCategoryController as AdminFirstCategorayController;
+use App\Http\Controllers\Admin\SecondCategoryController as AdminSecondCategorayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,7 @@ Route::get('/admin/first_category/{id}', [AdminFirstCategorayController::class, 
 Route::get('/admin/first_category/edit/{id}', [AdminFirstCategorayController::class, 'edit'])->name('admin.first_category.edit');
 Route::post('/admin/first_category/update', [AdminFirstCategorayController::class, 'update'])->name('admin.first_category.update');
 Route::post('/admin/first_category/delete', [AdminFirstCategorayController::class, 'delete'])->name('admin.first_category.delete');
+
+Route::get('/admin/second_category/add', [AdminSecondCategorayController::class, 'add'])->name('admin.second_category.add');
+Route::post('/admin/second_category/insert', [AdminSecondCategorayController::class, 'insert'])->name('admin.second_category.insert');
+Route::get('/admin/second_category/list', [AdminSecondCategorayController::class, 'list'])->name('admin.second_category.list');

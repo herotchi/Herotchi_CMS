@@ -37,7 +37,7 @@ class FirstCategoryController extends Controller
     {
         $input = $request->validated();
         $model = new FirstCategory();
-        $lists = $model->getAdminList($input);
+        $lists = $model->getAdminLists($input);
 
         return view('admin.first_category.list', compact(['lists', 'input']));
     }

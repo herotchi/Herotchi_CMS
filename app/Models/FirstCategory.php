@@ -28,7 +28,7 @@ class FirstCategory extends Model
     }
 
 
-    public function getAdminList(array $data)
+    public function getAdminLists(array $data)
     {
         $query = $this::query();
 
@@ -37,6 +37,14 @@ class FirstCategory extends Model
         });
 
         $lists = $query->paginate(FirstCategoryConsts::PAGENATE_LIST_LIMIT);
+
+        return $lists;
+    }
+
+
+    public function getLists()
+    {
+        $lists = $this::all();
 
         return $lists;
     }
