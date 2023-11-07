@@ -52,4 +52,13 @@ class SecondCategory extends Model
 
         return $lists;
     }
+
+
+    public function updateSecondCategory(array $data)
+    {
+        $secondCategory = $this::find($data['id']);
+
+        $secondCategory->fill($data);
+        $secondCategory->save();
+    }
 }

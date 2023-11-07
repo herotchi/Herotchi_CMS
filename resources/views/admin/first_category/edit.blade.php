@@ -6,6 +6,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.top') }}">TOP</a></li>
         <li class="breadcrumb-item"><a href="{{ route('admin.first_category.list') }}">大カテゴリ一覧</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.first_category.detail', ['id' => $detail->id]) }}">大カテゴリ詳細</a></li>
         <li class="breadcrumb-item active" aria-current="page">大カテゴリ編集</li>
     </ol>
 </nav>
