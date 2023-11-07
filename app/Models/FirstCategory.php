@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use App\Consts\FirstCategoryConsts;
 use Illuminate\Support\Arr;
@@ -18,6 +19,12 @@ class FirstCategory extends Model
     protected $fillable = [
         'name',
     ];
+
+
+    public function second_categories(): HasMany
+    {
+        return $this->hasMany(SecondCategory::class);
+    }
 
 
     public function insertFirstCategory(array $data)

@@ -162,6 +162,7 @@ return [
         'release_flg' => '表示設定',
         'release_date_from' => '公開日～',
         'release_date_to' => '～公開日',
+        'first_category_id' => '大カテゴリ名',
     ],
 
 ];

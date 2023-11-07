@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\SecondCategory\AddRequest;
+use App\Http\Requests\Admin\SecondCategory\ListRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\FirstCategory;
@@ -34,7 +35,21 @@ class SecondCategoryController extends Controller
     }
 
 
-    public function list()
+    public function list(ListRequest $request)
+    {
+        $input = $request->validated();
+
+        $firstCategoryModel = new FirstCategory();
+        $firstCategories = $firstCategoryModel->getLists();
+
+        $secondCategoryModel = new SecondCategory();
+        $lists = $secondCategoryModel->getAdminLists($input);
+
+        return view('admin.second_category.list', compact(['firstCategories', 'lists', 'input']));
+    }
+
+
+    public function detail()
     {
         var_dump(__LINE__);
     }
