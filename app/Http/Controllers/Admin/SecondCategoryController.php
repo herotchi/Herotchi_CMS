@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\SecondCategory\AddRequest;
 use App\Http\Requests\Admin\SecondCategory\ListRequest;
 use App\Http\Requests\Admin\SecondCategory\EditRequest;
+use App\Http\Requests\Admin\SecondCategory\DeleteRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\FirstCategory;
@@ -101,8 +102,13 @@ class SecondCategoryController extends Controller
     }
 
 
-    public function delete()
+    public function delete(DeleteRequest $request)
     {
-        var_dump(__LINE__);
+        DB::transaction(function () use ($request) {
+            $model = new SecondCategory();
+            $model->deleteSecondCategory($request->validated());
+        });
+
+        return redirect()->route('admin.second_category.list')->with('msg_success', '中カテゴリを削除しました。');
     }
 }
