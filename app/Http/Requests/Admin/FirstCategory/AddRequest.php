@@ -28,4 +28,12 @@ class AddRequest extends FormRequest
             'name' => 'bail|required|string|max:' . FirstCategoryConsts::NAME_LENGTH_MAX,
         ];
     }
+
+
+    public function attributes()
+    {
+        return [
+            'name' => '大カテゴリ名',
+        ];
+    }
 }

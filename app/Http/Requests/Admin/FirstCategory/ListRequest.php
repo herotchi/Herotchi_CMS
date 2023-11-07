@@ -47,4 +47,12 @@ class ListRequest extends FormRequest
 
         return $data;
     }
+
+
+    public function attributes()
+    {
+        return [
+            'name' => '大カテゴリ名',
+        ];
+    }
 }

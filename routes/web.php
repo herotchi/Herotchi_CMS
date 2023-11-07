@@ -44,3 +44,4 @@ Route::post('/admin/first_category/delete', [AdminFirstCategorayController::clas
 Route::get('/admin/second_category/add', [AdminSecondCategorayController::class, 'add'])->name('admin.second_category.add');
 Route::post('/admin/second_category/insert', [AdminSecondCategorayController::class, 'insert'])->name('admin.second_category.insert');
 Route::get('/admin/second_category/list', [AdminSecondCategorayController::class, 'list'])->name('admin.second_category.list');
+Route::get('/admin/second_category/{id}', [AdminSecondCategorayController::class, 'detail'])->name('admin.second_category.detail');
