@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\TopController as AdminTopController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\FirstCategoryController as AdminFirstCategorayController;
 use App\Http\Controllers\Admin\SecondCategoryController as AdminSecondCategorayController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,8 @@ use App\Http\Controllers\Admin\SecondCategoryController as AdminSecondCategorayC
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
 
 
 Route::get('/admin/', [AdminTopController::class, 'top'])->name('admin.top');
@@ -48,3 +53,7 @@ Route::get('/admin/second_category/{id}', [AdminSecondCategorayController::class
 Route::get('/admin/second_category/edit/{id}', [AdminSecondCategorayController::class, 'edit'])->name('admin.second_category.edit');
 Route::post('/admin/second_category/update', [AdminSecondCategorayController::class, 'update'])->name('admin.second_category.update');
 Route::post('/admin/second_category/delete', [AdminSecondCategorayController::class, 'delete'])->name('admin.second_category.delete');
+
+Route::get('/admin/product/add', [AdminProductController::class, 'add'])->name('admin.product.add');
+Route::post('/admin/product/insert', [AdminProductController::class, 'insert'])->name('admin.product.insert');
+Route::get('/admin/product/list', [AdminProductController::class, 'list'])->name('admin.product.list');

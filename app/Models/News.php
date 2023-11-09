@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Product;
 
 use App\Consts\NewsConsts;
+use App\Consts\ProductConsts;
 use Illuminate\Support\Arr;
+
+use DateTime;
 
 class News extends Model
 {
@@ -86,5 +90,21 @@ class News extends Model
     {
         $news = $this::find($data['id']);
         $news->delete();
+    }
+
+
+    public function insertProductNews($productId)
+    {
+        $today = new DateTime();
+        $productModel = new Product();
+        $product = $productModel::find($productId);
+
+        $this->title = $product->name . ProductConsts::PRODUCT_NEWS_MESSAGE;
+        $this->link_flg = NewsConsts::LINK_FLG_ON;
+        $this->url = route('product.detail', ['id' => $productId]);
+        $this->release_date = $today->format('Y-m-d');
+        $this->release_flg = NewsConsts::RELEASE_FLG_OFF;
+
+        $this->save();
     }
 }

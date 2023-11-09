@@ -186,6 +186,7 @@ return [
         'NewsConsts' => App\Consts\NewsConsts::class,
         'FirstCategoryConsts' => App\Consts\FirstCategoryConsts::class,
         'SecondCategoryConsts' => App\Consts\SecondCategoryConsts::class,
+        'ProductConsts' => App\Consts\ProductConsts::class,
     ])->toArray(),
 
 ];
