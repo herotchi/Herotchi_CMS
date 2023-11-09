@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\Product\AddRequest;
-//use App\Http\Requests\Admin\Product\ListRequest;
+use App\Http\Requests\Admin\Product\ListRequest;
 //use App\Http\Requests\Admin\Product\EditRequest;
 //use App\Http\Requests\Admin\Product\DeleteRequest;
 
@@ -50,7 +50,24 @@ class ProductController extends Controller
     }
 
 
-    public function list()
+    public function list(ListRequest $request)
+    {
+        $input = $request->validated();
+
+        $firstCategoryModel = new FirstCategory();
+        $firstCategories = $firstCategoryModel->getLists();
+
+        $secondCategoryModel = new SecondCategory();
+        $secondCategories = $secondCategoryModel->getLists();
+
+        $productModel = new Product();
+        $lists = $productModel->getAdminLists($input);
+
+        return view('admin.product.list', compact(['firstCategories', 'secondCategories', 'lists', 'input']));
+    }
+
+
+    public function detail()
     {
         var_dump(__LINE__);
     }

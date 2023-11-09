@@ -67,7 +67,7 @@
                 <tr>
                     <td scope="rol">{{ $list->first_category->name }}</td>
                     <td>
-                    <a href="{{ route('admin.second_category.detail', ['id' => $list->id]) }}">{{ $list->name }}</a>
+                        <a href="{{ route('admin.second_category.detail', ['id' => $list->id]) }}">{{ $list->name }}</a>
                     </td>
                 </tr>
             @endforeach

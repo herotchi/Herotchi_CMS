@@ -57,3 +57,4 @@ Route::post('/admin/second_category/delete', [AdminSecondCategorayController::cl
 Route::get('/admin/product/add', [AdminProductController::class, 'add'])->name('admin.product.add');
 Route::post('/admin/product/insert', [AdminProductController::class, 'insert'])->name('admin.product.insert');
 Route::get('/admin/product/list', [AdminProductController::class, 'list'])->name('admin.product.list');
+Route::get('/admin/product/{id}', [AdminProductController::class, 'detail'])->name('admin.product.detail');
