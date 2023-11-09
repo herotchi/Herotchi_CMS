@@ -1,16 +1,16 @@
 @extends('layouts.app')
-@section('title', '管理画面/中カテゴリ一覧')
+@section('title', '管理画面/製品一覧')
 
 @section('content')
 <nav aria-label="パンくずリスト">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.top') }}">TOP</a></li>
-        <li class="breadcrumb-item active" aria-current="page">中カテゴリ一覧</li>
+        <li class="breadcrumb-item active" aria-current="page">製品一覧</li>
     </ol>
 </nav>
 <div class="card">
     <form action="{{ route('admin.product.list') }}" method="GET" novalidate>
-        <div class="card-header">中カテゴリ一覧</div>
+        <div class="card-header">製品一覧</div>
         <div class="card-body">
             <div class="row g-3">
 
