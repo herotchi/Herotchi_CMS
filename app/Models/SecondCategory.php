@@ -54,6 +54,14 @@ class SecondCategory extends Model
     }
 
 
+    public function getLists()
+    {
+        $lists = $this::all();
+
+        return $lists;
+    }
+
+
     public function updateSecondCategory(array $data)
     {
         $secondCategory = $this::find($data['id']);

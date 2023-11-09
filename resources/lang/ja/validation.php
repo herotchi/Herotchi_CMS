@@ -163,6 +163,8 @@ return [
         'release_date_from' => '公開日～',
         'release_date_to' => '～公開日',
         'first_category_id' => '大カテゴリ名',
+        'second_category_id' => '中カテゴリ名',
+        'detail' => '製品詳細'
     ],
 
 ];
