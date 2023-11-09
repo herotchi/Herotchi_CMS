@@ -67,7 +67,38 @@ class ProductController extends Controller
     }
 
 
-    public function detail()
+    public function detail($id)
+    {
+
+        $validator = Validator::make(
+            ['id' => $id],
+            ['id' => 'bail|required|integer|exists:products']
+        );
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.product.list')->with('msg_failure', '不正な値が入力されました。');
+        }
+
+        $model = new Product();
+        $detail = $model->find($id);
+
+        return view('admin.product.detail', compact('detail'));
+    }
+
+
+    public function edit()
+    {
+        var_dump(__LINE__);
+    }
+
+
+    public function update()
+    {
+        var_dump(__LINE__);
+    }
+
+
+    public function delete()
     {
         var_dump(__LINE__);
     }

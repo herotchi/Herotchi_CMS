@@ -58,3 +58,6 @@ Route::get('/admin/product/add', [AdminProductController::class, 'add'])->name('
 Route::post('/admin/product/insert', [AdminProductController::class, 'insert'])->name('admin.product.insert');
 Route::get('/admin/product/list', [AdminProductController::class, 'list'])->name('admin.product.list');
 Route::get('/admin/product/{id}', [AdminProductController::class, 'detail'])->name('admin.product.detail');
+Route::get('/admin/product/edit/{id}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
+Route::post('/admin/product/update', [AdminProductController::class, 'update'])->name('admin.product.update');
+Route::post('/admin/product/delete', [AdminProductController::class, 'delete'])->name('admin.product.delete');
