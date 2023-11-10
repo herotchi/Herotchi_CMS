@@ -59,11 +59,11 @@
                 @csrf
                 <input type="hidden" name="id" value="{{ $detail->id }}">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteModalLabel">中カテゴリ削除</h1>
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">製品削除</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <span>※中カテゴリを削除します。よろしいですか？</span>
+                    <span>※製品を削除します。よろしいですか？</span>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="submit" class="btn btn-danger w-50">削除する</button>

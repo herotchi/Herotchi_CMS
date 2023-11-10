@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\Product\AddRequest;
 use App\Http\Requests\Admin\Product\ListRequest;
 use App\Http\Requests\Admin\Product\EditRequest;
-//use App\Http\Requests\Admin\Product\DeleteRequest;
+use App\Http\Requests\Admin\Product\DeleteRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\FirstCategory;
@@ -131,8 +131,13 @@ class ProductController extends Controller
     }
 
 
-    public function delete()
+    public function delete(DeleteRequest $request)
     {
-        var_dump(__LINE__);
+        DB::transaction(function () use ($request) {
+            $model = new Product();
+            $model->deleteProduct($request->validated());
+        });
+
+        return redirect()->route('admin.product.list')->with('msg_success', '製品を削除しました。');
     }
 }
