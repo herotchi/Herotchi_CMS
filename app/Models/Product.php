@@ -38,9 +38,9 @@ class Product extends Model
     }
 
 
-    public function insertProduct(array $data, string $fileName, string $dir)
+    public function insertProduct(array $data, string $fileName)
     {
-        $this->image = 'storage/' . $dir . '/' . $fileName;
+        $this->image = 'storage/' . ProductConsts::IMAGE_FILE_DIR . '/' . $fileName;
         $this->fill($data);
 
         $this->save();
@@ -75,13 +75,13 @@ class Product extends Model
     }
 
 
-    public function updateProduct(array $data, string $fileName, string $dir)
+    public function updateProduct(array $data, string $fileName)
     {
         $product = $this::find($data['id']);
         $previousImages = explode('/', $product->image);
 
         if ($fileName !== '') {
-            $product->image = 'storage/' . $dir . '/' . $fileName;
+            $product->image = 'storage/' . ProductConsts::IMAGE_FILE_DIR . '/' . $fileName;
         }
         $product->fill($data);
         $product->save();
