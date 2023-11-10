@@ -93,4 +93,12 @@ class Product extends Model
         return $data['id'];
     }
 
+
+    public function deleteProduct(array $data)
+    {
+        $product = $this::find($data['id']);
+        $previousImages = explode('/', $product->image);
+        $product->delete();
+        Storage::delete('public/' . ProductConsts::IMAGE_FILE_DIR . '/' . $previousImages[2]);
+    }
 }
