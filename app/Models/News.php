@@ -93,13 +93,13 @@ class News extends Model
     }
 
 
-    public function insertProductNews($productId)
+    public function saveProductNews($productId, $message)
     {
         $today = new DateTime();
         $productModel = new Product();
         $product = $productModel::find($productId);
 
-        $this->title = $product->name . ProductConsts::PRODUCT_NEWS_MESSAGE;
+        $this->title = $product->name . $message;
         $this->link_flg = NewsConsts::LINK_FLG_ON;
         $this->url = route('product.detail', ['id' => $productId]);
         $this->release_date = $today->format('Y-m-d');
