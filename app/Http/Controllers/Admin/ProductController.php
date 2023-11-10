@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\Product\AddRequest;
 use App\Http\Requests\Admin\Product\ListRequest;
-//use App\Http\Requests\Admin\Product\EditRequest;
+use App\Http\Requests\Admin\Product\EditRequest;
 //use App\Http\Requests\Admin\Product\DeleteRequest;
 
 use Illuminate\Support\Facades\DB;
@@ -43,7 +43,7 @@ class ProductController extends Controller
             $productModel = new Product();
             $productId = $productModel->insertProduct($request->validated(), $fileName, $dir);
             $newsModel = new News();
-            $newsModel->insertProductNews($productId);
+            $newsModel->saveProductNews($productId, ProductConsts::PRODUCT_NEWS_INSERT_MESSAGE);
         });
 
         return redirect()->route('admin.product.list')->with('msg_success', '製品を登録しました。');
@@ -86,15 +86,50 @@ class ProductController extends Controller
     }
 
 
-    public function edit()
+    public function edit($id)
     {
-        var_dump(__LINE__);
+        $validator = Validator::make(
+            ['id' => $id],
+            ['id' => 'bail|required|integer|exists:products']
+        );
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.product.list')->with('msg_failure', '不正な値が入力されました。');
+        }
+
+        $firstCategoryModel = new FirstCategory();
+        $firstCategories = $firstCategoryModel->getLists();
+
+        $secondCategoryModel = new SecondCategory();
+        $secondCategories = $secondCategoryModel->getLists();
+
+        $productModel = new Product();
+        $detail = $productModel->find($id);
+
+        return view('admin.product.edit', compact(['detail', 'firstCategories', 'secondCategories']));
     }
 
 
-    public function update()
+    public function update(EditRequest $request)
     {
-        var_dump(__LINE__);
+        DB::transaction(function () use ($request) {
+            
+            $image = $request->file('image');
+            $dir = ProductConsts::IMAGE_FILE_DIR;
+            if ($image) {
+                $fileName = $image->hashName();
+                $image->storeAs('public/' . $dir, $fileName);
+            } else {
+                $fileName = '';
+            }
+
+            $productModel = new Product();
+            $productId = $productModel->updateProduct($request->validated(), $fileName, $dir);
+            $newsModel = new News();
+            $newsModel->saveProductNews($productId, ProductConsts::PRODUCT_NEWS_UPDATE_MESSAGE);
+        });
+
+        return redirect()->route('admin.product.list')->with('msg_success', '製品を編集しました。');
     }
 
 

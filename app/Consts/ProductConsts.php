@@ -15,7 +15,8 @@ class ProductConsts
     ];
 
     public const IMAGE_FILE_DIR = 'products';
-    public const PRODUCT_NEWS_MESSAGE = 'が製品情報に追加されました。';
+    public const PRODUCT_NEWS_INSERT_MESSAGE = 'が製品情報に追加されました。';
+    public const PRODUCT_NEWS_UPDATE_MESSAGE = 'の製品情報が更新されました。';
 
     public const PAGENATE_LIST_LIMIT = 2;
 }
