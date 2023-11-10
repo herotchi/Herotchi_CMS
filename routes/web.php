@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\FirstCategoryController as AdminFirstCategorayController;
 use App\Http\Controllers\Admin\SecondCategoryController as AdminSecondCategorayController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 
 use App\Http\Controllers\ProductController;
 
@@ -61,3 +62,7 @@ Route::get('/admin/product/{id}', [AdminProductController::class, 'detail'])->na
 Route::get('/admin/product/edit/{id}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
 Route::post('/admin/product/update', [AdminProductController::class, 'update'])->name('admin.product.update');
 Route::post('/admin/product/delete', [AdminProductController::class, 'delete'])->name('admin.product.delete');
+
+Route::get('/admin/media/add', [AdminMediaController::class, 'add'])->name('admin.media.add');
+Route::post('/admin/media/insert', [AdminMediaController::class, 'insert'])->name('admin.media.insert');
+Route::get('/admin/media/list', [AdminMediaController::class, 'list'])->name('admin.media.list');

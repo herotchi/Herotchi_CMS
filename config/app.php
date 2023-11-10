@@ -187,6 +187,7 @@ return [
         'FirstCategoryConsts' => App\Consts\FirstCategoryConsts::class,
         'SecondCategoryConsts' => App\Consts\SecondCategoryConsts::class,
         'ProductConsts' => App\Consts\ProductConsts::class,
+        'MediaConsts' => App\Consts\MediaConsts::class,
     ])->toArray(),
 
 ];

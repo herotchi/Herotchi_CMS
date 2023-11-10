@@ -164,7 +164,9 @@ return [
         'release_date_to' => '～公開日',
         'first_category_id' => '大カテゴリ名',
         'second_category_id' => '中カテゴリ名',
-        'detail' => '製品詳細'
+        'detail' => '製品詳細',
+        'media_flg' => 'メディア設定',
+        'alt' => '代替テキスト',
     ],
 
 ];
