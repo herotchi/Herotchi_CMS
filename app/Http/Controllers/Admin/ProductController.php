@@ -38,10 +38,9 @@ class ProductController extends Controller
         DB::transaction(function () use ($request) {
             $image = $request->file('image');
             $fileName = $image->hashName();
-            $dir = ProductConsts::IMAGE_FILE_DIR;
-            $image->storeAs('public/' . $dir, $fileName);
+            $image->storeAs('public/' . ProductConsts::IMAGE_FILE_DIR, $fileName);
             $productModel = new Product();
-            $productId = $productModel->insertProduct($request->validated(), $fileName, $dir);
+            $productId = $productModel->insertProduct($request->validated(), $fileName);
             $newsModel = new News();
             $newsModel->saveProductNews($productId, ProductConsts::PRODUCT_NEWS_INSERT_MESSAGE);
         });
@@ -115,16 +114,15 @@ class ProductController extends Controller
         DB::transaction(function () use ($request) {
             
             $image = $request->file('image');
-            $dir = ProductConsts::IMAGE_FILE_DIR;
             if ($image) {
                 $fileName = $image->hashName();
-                $image->storeAs('public/' . $dir, $fileName);
+                $image->storeAs('public/' . ProductConsts::IMAGE_FILE_DIR, $fileName);
             } else {
                 $fileName = '';
             }
 
             $productModel = new Product();
-            $productId = $productModel->updateProduct($request->validated(), $fileName, $dir);
+            $productId = $productModel->updateProduct($request->validated(), $fileName);
             $newsModel = new News();
             $newsModel->saveProductNews($productId, ProductConsts::PRODUCT_NEWS_UPDATE_MESSAGE);
         });
