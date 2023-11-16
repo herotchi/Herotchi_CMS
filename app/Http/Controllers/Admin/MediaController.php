@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\Media\AddRequest;
 use App\Http\Requests\Admin\Media\ListRequest;
-//use App\Http\Requests\Admin\Media\EditRequest;
+use App\Http\Requests\Admin\Media\EditRequest;
 //use App\Http\Requests\Admin\Media\DeleteRequest;
 
 use Illuminate\Support\Facades\DB;
@@ -67,15 +67,41 @@ class MediaController extends Controller
     }
 
 
-    public function edit()
+    public function edit($id)
     {
-        var_dump(__LINE__);
+        $validator = Validator::make(
+            ['id' => $id],
+            ['id' => 'bail|required|integer|exists:media']
+        );
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.media.list')->with('msg_failure', '不正な値が入力されました。');
+        }
+
+        $model = new Media();
+        $detail = $model->find($id);
+
+        return view('admin.media.edit', compact('detail'));
     }
 
 
-    public function update()
+    public function update(EditRequest $request)
     {
-        var_dump(__LINE__);
+        DB::transaction(function () use ($request) {
+            
+            $image = $request->file('image');
+            if ($image) {
+                $fileName = $image->hashName();
+                $image->storeAs('public/' . MediaConsts::IMAGE_FILE_DIR, $fileName);
+            } else {
+                $fileName = '';
+            }
+
+            $model = new Media();
+            $model->updateMedia($request->validated(), $fileName);
+        });
+
+        return redirect()->route('admin.media.list')->with('msg_success', 'メディアを編集しました。');
     }
 
 

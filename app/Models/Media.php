@@ -53,4 +53,23 @@ class Media extends Model
 
         return $lists;
     }
+
+
+    public function updateMedia(array $data, string $fileName)
+    {
+        $media = $this::find($data['id']);
+        $previousImages = explode('/', $media->image);
+
+        if ($fileName !== '') {
+            $media->image = 'storage/' . MediaConsts::IMAGE_FILE_DIR . '/' . $fileName;
+        }
+        $media->fill($data);
+        $media->save();
+
+        if ($fileName !== '') {
+            Storage::delete('public/' . MediaConsts::IMAGE_FILE_DIR . '/' . $previousImages[2]);
+        }
+
+        return $data['id'];
+    }
 }
