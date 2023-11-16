@@ -66,3 +66,4 @@ Route::post('/admin/product/delete', [AdminProductController::class, 'delete'])-
 Route::get('/admin/media/add', [AdminMediaController::class, 'add'])->name('admin.media.add');
 Route::post('/admin/media/insert', [AdminMediaController::class, 'insert'])->name('admin.media.insert');
 Route::get('/admin/media/list', [AdminMediaController::class, 'list'])->name('admin.media.list');
+Route::get('/admin/media/{id}', [AdminMediaController::class, 'detail'])->name('admin.media.detail');
