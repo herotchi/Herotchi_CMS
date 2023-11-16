@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\Media\AddRequest;
-//use App\Http\Requests\Admin\Media\ListRequest;
+use App\Http\Requests\Admin\Media\ListRequest;
 //use App\Http\Requests\Admin\Media\EditRequest;
 //use App\Http\Requests\Admin\Media\DeleteRequest;
 
@@ -37,7 +37,18 @@ class MediaController extends Controller
     }
 
 
-    public function list()
+    public function list(ListRequest $request)
+    {
+        $input = $request->validated();
+
+        $model = new Media();
+        $lists = $model->getAdminLists($input);
+
+        return view('admin.media.list', compact(['lists', 'input']));
+    }
+
+
+    public function detail()
     {
         var_dump(__LINE__);
     }
