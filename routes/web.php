@@ -67,3 +67,6 @@ Route::get('/admin/media/add', [AdminMediaController::class, 'add'])->name('admi
 Route::post('/admin/media/insert', [AdminMediaController::class, 'insert'])->name('admin.media.insert');
 Route::get('/admin/media/list', [AdminMediaController::class, 'list'])->name('admin.media.list');
 Route::get('/admin/media/{id}', [AdminMediaController::class, 'detail'])->name('admin.media.detail');
+Route::get('/admin/media/edit/{id}', [AdminMediaController::class, 'edit'])->name('admin.media.edit');
+Route::post('/admin/media/update', [AdminMediaController::class, 'update'])->name('admin.media.update');
+Route::post('/admin/media/delete', [AdminMediaController::class, 'delete'])->name('admin.media.delete');
