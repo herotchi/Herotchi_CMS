@@ -72,4 +72,13 @@ class Media extends Model
 
         return $data['id'];
     }
+
+
+    public function deleteMedia(array $data)
+    {
+        $media = $this::find($data['id']);
+        $previousImages = explode('/', $media->image);
+        $media->delete();
+        Storage::delete('public/' . MediaConsts::IMAGE_FILE_DIR . '/' . $previousImages[2]);
+    }
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\Media\AddRequest;
 use App\Http\Requests\Admin\Media\ListRequest;
 use App\Http\Requests\Admin\Media\EditRequest;
-//use App\Http\Requests\Admin\Media\DeleteRequest;
+use App\Http\Requests\Admin\Media\DeleteRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Media;
@@ -105,8 +105,13 @@ class MediaController extends Controller
     }
 
 
-    public function delete()
+    public function delete(DeleteRequest $request)
     {
-        var_dump(__LINE__);
+        DB::transaction(function () use ($request) {
+            $model = new Media();
+            $model->deleteMedia($request->validated());
+        });
+
+        return redirect()->route('admin.media.list')->with('msg_success', 'メディアを削除しました。');
     }
 }
