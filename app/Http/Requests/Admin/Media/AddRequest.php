@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Illuminate\Validation\Validator;
 use Illuminate\Validation\Rule;
 
 use App\Consts\MediaConsts;
