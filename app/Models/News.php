@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 
 use App\Consts\NewsConsts;
-use App\Consts\ProductConsts;
 use Illuminate\Support\Arr;
 
 use DateTime;
