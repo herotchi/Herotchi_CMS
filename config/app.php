@@ -188,6 +188,7 @@ return [
         'SecondCategoryConsts' => App\Consts\SecondCategoryConsts::class,
         'ProductConsts' => App\Consts\ProductConsts::class,
         'MediaConsts' => App\Consts\MediaConsts::class,
+        'ContactConsts' => App\Consts\ContactConsts::class,
     ])->toArray(),
 
 ];

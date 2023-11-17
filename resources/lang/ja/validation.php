@@ -167,6 +167,8 @@ return [
         'detail' => '製品詳細',
         'media_flg' => 'メディア設定',
         'alt' => '代替テキスト',
+        'mail_address' => 'メールアドレス',
+        'mail_body' => 'お問い合わせ内容',
     ],
 
 ];

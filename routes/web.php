@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\SecondCategoryController as AdminSecondCategorayC
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 
+use App\Http\Controllers\TopController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +23,19 @@ use App\Http\Controllers\ProductController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::get('/', [TopController::class, 'top'])->name('top');
 
 Route::post('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
 
+Route::get('/contact/add', [ContactController::class, 'add'])->name('contact.add');
+Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+Route::post('/contact/insert', [ContactController::class, 'insert'])->name('contact.insert');
+Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
 
 Route::get('/admin/', [AdminTopController::class, 'top'])->name('admin.top');
 
