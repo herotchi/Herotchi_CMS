@@ -169,6 +169,9 @@ return [
         'alt' => '代替テキスト',
         'mail_address' => 'メールアドレス',
         'mail_body' => 'お問い合わせ内容',
+        'created_at_from' => '投稿日～',
+        'created_at_to' => '～投稿日',
+        'status' => 'ステータス',
     ],
 
 ];

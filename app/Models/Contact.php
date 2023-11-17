@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Consts\ContactConsts;
+use Illuminate\Support\Arr;
 
 class Contact extends Model
 {
@@ -13,6 +14,10 @@ class Contact extends Model
 
     protected $table = 'contacts';
     protected $primaryKey = 'id';
+
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
 
     protected $fillable = [
         'name',
@@ -27,5 +32,35 @@ class Contact extends Model
         $this->fill($data);
 
         $this->save();
+    }
+
+
+    public function getAdminLists(array $data)
+    {
+        $query = $this::query();
+
+        $query->when(Arr::exists($data, 'name') && $data['name'], function ($query) use ($data) {
+            return $query->where('name', 'like', "%{$data['name']}%");
+        });
+
+        $query->when(Arr::exists($data, 'mail_body') && $data['mail_body'], function ($query) use ($data) {
+            return $query->where('mail_body', 'like', "%{$data['mail_body']}%");
+        });
+
+        $query->when(Arr::exists($data, 'created_at_from') && $data['created_at_from'], function ($query) use ($data) {
+            return $query->where('created_at', '>=',  $data['created_at_from']);
+        });
+
+        $query->when(Arr::exists($data, 'created_at_to') && $data['created_at_to'], function ($query) use ($data) {
+            return $query->where('created_at', '<=',  $data['created_at_to']);
+        });
+
+        $query->when(Arr::exists($data, 'status') && $data['status'], function ($query) use ($data) {
+            return $query->whereIn('status', $data['status']);
+        });
+
+        $lists = $query->paginate(ContactConsts::PAGENATE_LIST_LIMIT);
+
+        return $lists;
     }
 }

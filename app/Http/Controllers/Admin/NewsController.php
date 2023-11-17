@@ -38,7 +38,7 @@ class NewsController extends Controller
     {
         $input = $request->validated();
         $model = new News();
-        $lists = $model->getAdminList($input);
+        $lists = $model->getAdminLists($input);
 
         return view('admin.news.list', compact(['lists', 'input']));
     }
