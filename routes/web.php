@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\FirstCategoryController as AdminFirstCategorayCon
 use App\Http\Controllers\Admin\SecondCategoryController as AdminSecondCategorayController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\ProductController;
@@ -78,3 +79,6 @@ Route::get('/admin/media/{id}', [AdminMediaController::class, 'detail'])->name('
 Route::get('/admin/media/edit/{id}', [AdminMediaController::class, 'edit'])->name('admin.media.edit');
 Route::post('/admin/media/update', [AdminMediaController::class, 'update'])->name('admin.media.update');
 Route::post('/admin/media/delete', [AdminMediaController::class, 'delete'])->name('admin.media.delete');
+
+Route::get('/admin/contact/list', [AdminContactController::class, 'list'])->name('admin.contact.list');
+Route::get('/admin/contact/{id}', [AdminContactController::class, 'detail'])->name('admin.contact.detail');

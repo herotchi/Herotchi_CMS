@@ -7,6 +7,7 @@ class ContactConsts
     public const NAME_LENGTH_MAX = 50;
     public const MAIL_ADDRESS_LENGTH_MAX = 255;
     public const MAIL_BODY_LENGTH_MAX = 2000;
+    public const MAIL_BODY_LIST_LENGTH_MAX = 50;
     public const STATUS_COMPLETED = 1;
     public const STATUS_IN_PROGRESS = 2;
     public const STATUS_NOT_STARTED = 3;

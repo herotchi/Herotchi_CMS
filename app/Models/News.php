@@ -43,7 +43,7 @@ class News extends Model
     }
 
 
-    public function getAdminList(array $data)
+    public function getAdminLists(array $data)
     {
         $query = $this::query();
 
