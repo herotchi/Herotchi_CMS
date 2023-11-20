@@ -63,4 +63,12 @@ class Contact extends Model
 
         return $lists;
     }
+
+
+    public function updateContactStatus(array $data)
+    {
+        $contact = $this::find($data['id']);
+        $contact->status = $data['status'];
+        $contact->save();
+    }
 }
