@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('title', '管理画面/メディア詳細')
 
 @section('content')

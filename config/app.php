@@ -189,6 +189,7 @@ return [
         'ProductConsts' => App\Consts\ProductConsts::class,
         'MediaConsts' => App\Consts\MediaConsts::class,
         'ContactConsts' => App\Consts\ContactConsts::class,
+        'AuthConsts' => App\Consts\AuthConsts::class,
     ])->toArray(),
 
 ];
