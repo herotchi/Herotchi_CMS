@@ -39,18 +39,20 @@ class ContactController extends Controller
             return redirect()->route('contact.add')->withInput($input);
         }
 
-        DB::transaction(function () use ($input) {
+        $no = '';
+        DB::transaction(function () use ($input, &$no) {
             $model = new Contact();
-            $model->insertContact($input);
+            $no = $model->insertContact($input);
         });
         
-        return redirect()->route('contact.complete');
+        return redirect()->route('contact.complete')->with('no', $no);
     }
 
 
-    public function complete()
+    public function complete(Request $request)
     {
-        return view('contact.complete');
+        $no = $request->session()->get('no');
+        return view('contact.complete', compact('no'));
     }
     
 }

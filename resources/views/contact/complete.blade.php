@@ -12,7 +12,7 @@
 <div class="card">
     <div class="card-header">お問い合わせ完了</div>
     <div class="card-body">
-        お問い合わせが完了しました。担当から連絡があるまでお待ちください。
+        お問い合わせが完了しました。お問い合わせ番号は&ensp;<strong>{{ $no }}</strong>&ensp;です。担当から連絡があるまでお待ちください。
     </div>
     <div class="card-footer">
         <div class="row">

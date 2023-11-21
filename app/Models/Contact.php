@@ -32,8 +32,12 @@ class Contact extends Model
     {
         $this->status = ContactConsts::STATUS_NOT_STARTED;
         $this->fill($data);
-
         $this->save();
+
+        $this->no = str_pad($this->id, 10, 0, STR_PAD_LEFT);
+        $this->save();
+
+        return $this->no;
     }
 
 
@@ -41,8 +45,8 @@ class Contact extends Model
     {
         $query = $this::query();
 
-        $query->when(Arr::exists($data, 'name') && $data['name'], function ($query) use ($data) {
-            return $query->where('name', 'like', "%{$data['name']}%");
+        $query->when(Arr::exists($data, 'no') && $data['no'], function ($query) use ($data) {
+            return $query->where('no', $data['no']);
         });
 
         $query->when(Arr::exists($data, 'mail_body') && $data['mail_body'], function ($query) use ($data) {

@@ -4,6 +4,7 @@ namespace App\Consts;
 
 class ContactConsts
 {
+    public const NO_LENGTH = 10;
     public const NAME_LENGTH_MAX = 50;
     public const MAIL_ADDRESS_LENGTH_MAX = 255;
     public const MAIL_BODY_LENGTH_MAX = 2000;

@@ -12,7 +12,7 @@ use App\Consts\ContactConsts;
 class ListRequest extends FormRequest
 {
     private $forms = [
-        'name',
+        'no',
         'mail_body',
         'created_at_from',
         'created_at_to',
@@ -37,7 +37,7 @@ class ListRequest extends FormRequest
     {
         return [
             //
-            'name' => 'bail|nullable|string|max:' . ContactConsts::NAME_LENGTH_MAX,
+            'no' => 'bail|nullable|string|size:' . ContactConsts::NO_LENGTH,
             'mail_body' => 'bail|nullable|string|max:' . ContactConsts::MAIL_BODY_LIST_LENGTH_MAX,
             'created_at_from' => 'bail|nullable|date_format:Y-m-d|after_or_equal:2019/01/01|before_or_equal:2037/12/31',
             'created_at_to' => 'bail|nullable|date_format:Y-m-d|after_or_equal:2019/01/01|before_or_equal:2037/12/31|after_or_equal:created_at_from',
