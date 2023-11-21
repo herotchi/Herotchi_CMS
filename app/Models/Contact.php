@@ -16,6 +16,8 @@ class Contact extends Model
     protected $primaryKey = 'id';
 
     protected $casts = [
+        'name' => 'encrypted',
+        'mail_address' => 'encrypted',
         'created_at' => 'datetime',
     ];
 
