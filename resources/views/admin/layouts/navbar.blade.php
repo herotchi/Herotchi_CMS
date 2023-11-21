@@ -53,7 +53,6 @@
                     </ul>
                 </li>
       		</ul>
-              {{--<a class="btn btn-outline-success" href="#" role="button">ログアウト</a>--}}
             <form class="" action="{{ route('admin.auth.logout') }}" method="POST">
                 @csrf
                 <button class="btn btn-outline-success" type="submit">ログアウト</button>
