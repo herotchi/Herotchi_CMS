@@ -172,6 +172,7 @@ return [
         'created_at_from' => '投稿日～',
         'created_at_to' => '～投稿日',
         'status' => 'ステータス',
+        'no' => 'お問い合わせ番号',
     ],
 
 ];

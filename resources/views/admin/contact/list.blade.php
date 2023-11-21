@@ -15,11 +15,11 @@
             <div class="row g-3">
 
                 <div class="col-md-6">
-                    <label for="name" class="form-label">氏名</label>
-                    <input type="text" id="name"
-                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                        value="{{ old('name', $input['name']) }}" autofocus>
-                    <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                    <label for="no" class="form-label">お問い合わせ番号</label>
+                    <input type="text" id="no"
+                        class="form-control{{ $errors->has('no') ? ' is-invalid' : '' }}" name="no"
+                        value="{{ old('no', $input['no']) }}" autofocus>
+                    <div class="invalid-feedback">{{ $errors->first('no') }}</div>
                 </div>
 
                 <div class="col-md-6">

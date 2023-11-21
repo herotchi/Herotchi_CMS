@@ -18,6 +18,10 @@
         <div class="card-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
+                    <h5>お問い合わせ番号</h5>
+                    <span>{{ $detail->no }}</span>
+                </li>
+                <li class="list-group-item">
                     <h5>投稿日</h5>
                     <span>{{ $detail->created_at->format('Y/m/d H:i:s') }}</span>
                 </li>
