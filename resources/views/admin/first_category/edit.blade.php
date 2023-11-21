@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('title', '管理画面/大カテゴリ編集')
 
 @section('content')
