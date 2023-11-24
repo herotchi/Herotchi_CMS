@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Consts\ContactConsts;
 use Illuminate\Support\Arr;
 
+use DateTime;
+
 class Contact extends Model
 {
     use HasFactory;
@@ -54,11 +56,15 @@ class Contact extends Model
         });
 
         $query->when(Arr::exists($data, 'created_at_from') && $data['created_at_from'], function ($query) use ($data) {
-            return $query->where('created_at', '>=',  $data['created_at_from']);
+            $from = new DateTime($data['created_at_from']);
+            $from->setTime(0, 0, 0);
+            return $query->where('created_at', '>=',  $from->format('Y-m-d H:i:s'));
         });
 
         $query->when(Arr::exists($data, 'created_at_to') && $data['created_at_to'], function ($query) use ($data) {
-            return $query->where('created_at', '<=',  $data['created_at_to']);
+            $to = new DateTime($data['created_at_to']);
+            $to->setTime(23, 59, 59);
+            return $query->where('created_at', '<=', $to->format('Y-m-d H:i:s'));
         });
 
         $query->when(Arr::exists($data, 'status') && $data['status'], function ($query) use ($data) {
