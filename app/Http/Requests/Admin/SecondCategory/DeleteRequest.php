@@ -4,6 +4,11 @@ namespace App\Http\Requests\Admin\SecondCategory;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Validator;
+use Illuminate\Support\Arr;
+
+use App\Models\SecondCategory;
+
 class DeleteRequest extends FormRequest
 {
     /**
@@ -24,6 +29,27 @@ class DeleteRequest extends FormRequest
         return [
             //
             'id' => 'bail|required|integer|exists:second_categories',
+        ];
+    }
+
+
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+                $data = $validator->valid();
+
+                // 削除対象の中カテゴリが製品と紐づいているかチェック
+                if (Arr::exists($data, 'id')) {
+                    $model = new SecondCategory();
+                    $secondCategory = $model->find($data['id']);
+
+                    $resultProduct = $secondCategory->products()->exists();
+                    if ($resultProduct) {
+                        $validator->errors()->add('id', '製品と紐づいている中カテゴリは削除できません。');
+                    }
+                }
+            }
         ];
     }
 }

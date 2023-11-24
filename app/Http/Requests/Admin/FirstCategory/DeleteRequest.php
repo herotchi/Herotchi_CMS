@@ -8,7 +8,6 @@ use Illuminate\Validation\Validator;
 use Illuminate\Support\Arr;
 
 use App\Models\FirstCategory;
-use App\Models\SecondCategory;
 
 class DeleteRequest extends FormRequest
 {
@@ -44,14 +43,15 @@ class DeleteRequest extends FormRequest
                 if (Arr::exists($data, 'id')) {
                     $model = new FirstCategory();
                     $firstCategory = $model->find($data['id']);
+
                     $resultSecondCategory = $firstCategory->second_categories()->exists();
                     if ($resultSecondCategory) {
-                        $validator->errors()->add('second_category_id', '中カテゴリと紐づいている大カテゴリは削除できません。');
+                        $validator->errors()->add('id', '中カテゴリと紐づいている大カテゴリは削除できません。');
                     }
 
                     $resultProduct = $firstCategory->products()->exists();
                     if ($resultProduct) {
-                        $validator->errors()->add('second_category_id', '製品と紐づいている大カテゴリは削除できません。');
+                        $validator->errors()->add('id', '製品と紐づいている大カテゴリは削除できません。');
                     }
                 }
             }
