@@ -49,6 +49,8 @@ class Media extends Model
             return $query->whereIn('release_flg', $data['release_flg']);
         });
 
+        $query->orderBy('id', 'desc');
+
         $lists = $query->paginate(MediaConsts::PAGENATE_LIST_LIMIT);
 
         return $lists;

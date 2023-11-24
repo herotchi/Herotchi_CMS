@@ -55,6 +55,8 @@ class SecondCategory extends Model
             return $query->where('name', 'like', "%{$data['name']}%");
         });
 
+        $query->orderBy('id', 'desc');
+
         $lists = $query->paginate(SecondCategoryConsts::PAGENATE_LIST_LIMIT);
 
         return $lists;
