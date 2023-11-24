@@ -23,7 +23,7 @@
                 </li>
                 <li class="list-group-item">
                     <h5>投稿日</h5>
-                    <span>{{ $detail->created_at->format('Y/m/d H:i:s') }}</span>
+                    <span>{{ $detail->created_at->format('Y年m月d日 H時i分s秒') }}</span>
                 </li>
                 <li class="list-group-item">
                     <h5>氏名</h5>
