@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\ProductController;
@@ -94,5 +95,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/contact/list', [AdminContactController::class, 'list'])->name('admin.contact.list');
     Route::get('/admin/contact/{id}', [AdminContactController::class, 'detail'])->name('admin.contact.detail');
     Route::post('/admin/contact/status_update', [AdminContactController::class, 'status_update'])->name('admin.contact.status_update');
+
+    Route::get('admin/user/login', [AdminUserController::class, 'login'])->name('admin.user.login');
+    Route::post('admin/user/login_update', [AdminUserController::class, 'login_update'])->name('admin.user.login_update');
 
 });

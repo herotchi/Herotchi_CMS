@@ -173,6 +173,8 @@ return [
         'created_at_to' => '～投稿日',
         'status' => 'ステータス',
         'no' => 'お問い合わせ番号',
+        'login_id' => 'ログインID',
+        'password' => 'パスワード',
     ],
 
 ];

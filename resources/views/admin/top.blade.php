@@ -3,4 +3,5 @@
 
 @section('content')
 test
+{{ var_dump(Auth::user()); }}
 @endsection
