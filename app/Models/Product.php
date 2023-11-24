@@ -69,6 +69,8 @@ class Product extends Model
             return $query->whereIn('release_flg', $data['release_flg']);
         });
 
+        $query->orderBy('id', 'desc');
+
         $lists = $query->paginate(ProductConsts::PAGENATE_LIST_LIMIT);
 
         return $lists;

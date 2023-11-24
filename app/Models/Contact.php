@@ -71,6 +71,8 @@ class Contact extends Model
             return $query->whereIn('status', $data['status']);
         });
 
+        $query->orderBy('id', 'desc');
+
         $lists = $query->paginate(ContactConsts::PAGENATE_LIST_LIMIT);
 
         return $lists;

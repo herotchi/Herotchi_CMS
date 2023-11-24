@@ -63,6 +63,8 @@ class News extends Model
             return $query->whereIn('release_flg', $data['release_flg']);
         });
 
+        $query->orderBy('release_date', 'desc')->orderBy('id', 'desc');
+
         $lists = $query->paginate(NewsConsts::PAGENATE_LIST_LIMIT);
 
         return $lists;
