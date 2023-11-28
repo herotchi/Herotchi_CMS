@@ -93,6 +93,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/media/delete', [AdminMediaController::class, 'delete'])->name('admin.media.delete');
 
     Route::get('/admin/contact/list', [AdminContactController::class, 'list'])->name('admin.contact.list');
+    Route::get('/admin/contact/csv_export', [AdminContactController::class, 'csv_export'])->name('admin.contact.csv_export');
     Route::get('/admin/contact/{id}', [AdminContactController::class, 'detail'])->name('admin.contact.detail');
     Route::post('/admin/contact/status_update', [AdminContactController::class, 'status_update'])->name('admin.contact.status_update');
 

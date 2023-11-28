@@ -63,8 +63,9 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-12 text-center my-2">
-                    <button class="btn btn-primary w-50" type="submit">検索</button>
+                    <button class="btn btn-primary w-50" type="submit" name="submit" value="submit">検索</button>
                     <a class="btn btn-secondary" href="{{ route('admin.top') }}" role="button">戻る</a>
+                    <button class="btn btn-success float-end" type="submit" name="csv_export" value="csv_export">CSVダウンロード</button>
                 </div>
             </div>
         </div>
