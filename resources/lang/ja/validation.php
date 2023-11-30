@@ -175,6 +175,8 @@ return [
         'no' => 'お問い合わせ番号',
         'login_id' => 'ログインID',
         'password' => 'パスワード',
+        'csv_file' => 'CSVファイル',
+        'code' => '文字コード'
     ],
 
 ];
