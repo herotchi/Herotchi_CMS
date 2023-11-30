@@ -62,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin/first_category/add', [AdminFirstCategorayController::class, 'add'])->name('admin.first_category.add');
     Route::post('/admin/first_category/insert', [AdminFirstCategorayController::class, 'insert'])->name('admin.first_category.insert');
+    Route::get('/admin/first_category/csv_add', [AdminFirstCategorayController::class, 'csv_add'])->name('admin.first_category.csv_add');
+    Route::post('/admin/first_category/csv_import', [AdminFirstCategorayController::class, 'csv_import'])->name('admin.first_category.csv_import');
     Route::get('/admin/first_category/list', [AdminFirstCategorayController::class, 'list'])->name('admin.first_category.list');
     Route::get('/admin/first_category/{id}', [AdminFirstCategorayController::class, 'detail'])->name('admin.first_category.detail');
     Route::get('/admin/first_category/edit/{id}', [AdminFirstCategorayController::class, 'edit'])->name('admin.first_category.edit');
