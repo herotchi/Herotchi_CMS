@@ -72,6 +72,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin/second_category/add', [AdminSecondCategorayController::class, 'add'])->name('admin.second_category.add');
     Route::post('/admin/second_category/insert', [AdminSecondCategorayController::class, 'insert'])->name('admin.second_category.insert');
+    Route::get('/admin/second_category/csv_add', [AdminSecondCategorayController::class, 'csv_add'])->name('admin.second_category.csv_add');
+    Route::post('/admin/second_category/csv_import', [AdminSecondCategorayController::class, 'csv_import'])->name('admin.second_category.csv_import');
     Route::get('/admin/second_category/list', [AdminSecondCategorayController::class, 'list'])->name('admin.second_category.list');
     Route::get('/admin/second_category/{id}', [AdminSecondCategorayController::class, 'detail'])->name('admin.second_category.detail');
     Route::get('/admin/second_category/edit/{id}', [AdminSecondCategorayController::class, 'edit'])->name('admin.second_category.edit');

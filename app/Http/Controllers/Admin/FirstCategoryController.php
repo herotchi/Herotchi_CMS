@@ -129,8 +129,6 @@ class FirstCategoryController extends Controller
         }
 
         $csvs = new SplFileObject(storage_path('app/'. FirstCategoryConsts::CSV_FILE_DIR . '/' . $fileName));
-
-        //$csv->setFlags(SplFileObject::READ_CSV | SplFileObject::SKIP_EMPTY | SplFileObject::READ_AHEAD | SplFileObject::DROP_NEW_LINE);
         $csvs->setFlags(SplFileObject::READ_CSV | SplFileObject::READ_AHEAD);
 
         $rules = [
@@ -167,8 +165,9 @@ class FirstCategoryController extends Controller
                 continue;
             }
 
-            foreach (FirstCategoryConsts::CSV_HEADER as $key => $value) {
-                $lines[$line + 1][$key] = $csv[0];
+            // バリデート用にCSVデータを整形する
+            foreach (array_keys(FirstCategoryConsts::CSV_HEADER) as $key => $value) {
+                $lines[$line + 1][$value] = $csv[$key];
             }
 
             $validator = Validator::make($lines[$line + 1], $rules, __('validation'), $attributes);
@@ -178,8 +177,10 @@ class FirstCategoryController extends Controller
                 // エラーメッセージを「xx行目：エラーメッセージ」の形に整える
                 $errorMessages['csv_file'][] = $line + 1 . '行目：' . $validator->errors()->first();
             } elseif (in_array($lines[$line + 1]['name'], $names, true)) {
+                // 既にある大カテゴリ名と重複した場合
                 $errorMessages['csv_file'][] = $line + 1 . '行目：既に存在する大カテゴリ名と重複しています';
             } else {
+                // 入力エラーがない場合
                 $lines[$line + 1]['created_at'] = $today->format('Y-m-d H:i:s');
                 $lines[$line + 1]['updated_at'] = $today->format('Y-m-d H:i:s');
             }

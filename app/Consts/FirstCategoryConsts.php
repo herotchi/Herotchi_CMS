@@ -15,7 +15,7 @@ class FirstCategoryConsts
     public const CSV_HEADER = [
         'name' => '大カテゴリ名'
     ];
-
     public const CSV_FILE_DIR = 'first_category';
+
     public const PAGENATE_LIST_LIMIT = 2;
 }
