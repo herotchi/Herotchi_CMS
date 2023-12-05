@@ -190,6 +190,15 @@ class SecondCategoryController extends Controller
                 continue;
             }
 
+            // 1行あたりの項目数が足りない場合
+            $filteredArray = array_filter($csv, function ($value) {
+                return $value !== NULL;
+            });
+            if (count($filteredArray) !== count(SecondCategoryConsts::CSV_HEADER)) {
+                $errorMessages['csv_file'][] = $line + 1 . '行目：項目に過不足があります';
+                continue;
+            }
+
             // バリデート用にCSVデータを整形する
             foreach (array_keys(SecondCategoryConsts::CSV_HEADER) as $key => $value) {
                 $lines[$line + 1][$value] = $csv[$key];
