@@ -25,7 +25,7 @@ class AddRequest extends FormRequest
     {
         return [
             //
-            'name' => 'bail|required|string|max:' . FirstCategoryConsts::NAME_LENGTH_MAX,
+            'name' => 'bail|required|string|max:' . FirstCategoryConsts::NAME_LENGTH_MAX . '|unique:first_categories,name',
         ];
     }
 

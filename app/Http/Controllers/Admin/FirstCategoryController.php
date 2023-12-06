@@ -150,6 +150,9 @@ class FirstCategoryController extends Controller
         $firstCategories = $model::all();
         $names = $firstCategories->pluck('name')->toArray();
 
+        // CSVファイル内の重複チェック用
+        $inputNames = [];
+
         foreach ($csvs as $line => $csv) {
 
             // 文字コード変換
@@ -160,7 +163,7 @@ class FirstCategoryController extends Controller
             // ヘッダー行
             if ($line === 0) {
                 if (array_values(FirstCategoryConsts::CSV_HEADER) !== $csv) {
-                    $errorMessages['csv_file'][] = $line + 1 . '行目：ヘッダーの項目名が違っています';
+                    $errorMessages['csv_file'][] = $line + 1 . '行目：ヘッダーの項目名が違っています。';
                 }
                 continue;
             }
@@ -170,7 +173,7 @@ class FirstCategoryController extends Controller
                 return $value !== NULL;
             });
             if (count($filteredArray) !== count(FirstCategoryConsts::CSV_HEADER)) {
-                $errorMessages['csv_file'][] = $line + 1 . '行目：項目に過不足があります';
+                $errorMessages['csv_file'][] = $line + 1 . '行目：項目に過不足があります。';
                 continue;
             }
 
@@ -180,18 +183,22 @@ class FirstCategoryController extends Controller
             }
 
             $validator = Validator::make($lines[$line + 1], $rules, __('validation'), $attributes);
-    
             // バリデーションエラーがあった場合
             if($validator->fails()) {
                 // エラーメッセージを「xx行目：エラーメッセージ」の形に整える
                 $errorMessages['csv_file'][] = $line + 1 . '行目：' . $validator->errors()->first();
             } elseif (in_array($lines[$line + 1]['name'], $names, true)) {
                 // 既にある大カテゴリ名と重複した場合
-                $errorMessages['csv_file'][] = $line + 1 . '行目：既に存在する大カテゴリ名と重複しています';
+                $errorMessages['csv_file'][] = $line + 1 . '行目：既に存在する大カテゴリ名と重複しています。';
+            } elseif (in_array($lines[$line + 1]['name'], $inputNames, true)) {
+                // CSVファイル内で重複があった場合
+                $errorMessages['csv_file'][] = $line + 1 . '行目：CSVファイル内で重複しています。';
             } else {
                 // 入力エラーがない場合
                 $lines[$line + 1]['created_at'] = $today->format('Y-m-d H:i:s');
                 $lines[$line + 1]['updated_at'] = $today->format('Y-m-d H:i:s');
+
+                $inputNames[] = $lines[$line + 1]['name'];
             }
         }
 
