@@ -1,18 +1,18 @@
 @extends('admin.layouts.app')
-@section('title', '管理画面/製品登録')
+@section('title', '管理画面/製品情報登録')
 
 @section('content')
 <nav aria-label="パンくずリスト">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.top') }}">TOP</a></li>
-        <li class="breadcrumb-item active" aria-current="page">製品登録</li>
+        <li class="breadcrumb-item active" aria-current="page">製品情報登録</li>
     </ol>
 </nav>
 
 <div class="card">
     <form action="{{ route('admin.product.insert') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
-        <div class="card-header">製品登録</div>
+        <div class="card-header">製品情報登録</div>
         <div class="card-body">
             <div class="row g-3">
 

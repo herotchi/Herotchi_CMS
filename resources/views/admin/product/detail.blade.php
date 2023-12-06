@@ -1,17 +1,17 @@
 @extends('admin.layouts.app')
-@section('title', '管理画面/製品詳細')
+@section('title', '管理画面/製品情報詳細')
 
 @section('content')
 <nav aria-label="パンくずリスト">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.top') }}">TOP</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.product.list') }}">製品一覧</a></li>
-        <li class="breadcrumb-item active" aria-current="page">製品詳細</li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.product.list') }}">製品情報一覧</a></li>
+        <li class="breadcrumb-item active" aria-current="page">製品情報詳細</li>
     </ol>
 </nav>
 
 <div class="card">
-    <div class="card-header">製品詳細</div>
+    <div class="card-header">製品情報詳細</div>
     <div class="card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
@@ -59,11 +59,11 @@
                 @csrf
                 <input type="hidden" name="id" value="{{ $detail->id }}">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteModalLabel">製品削除</h1>
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">製品情報削除</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <span>※製品を削除します。よろしいですか？</span>
+                    <span>※製品情報を削除します。よろしいですか？</span>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="submit" class="btn btn-danger w-50">削除する</button>
