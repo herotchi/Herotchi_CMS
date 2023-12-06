@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-12 text-center my-2">
                     <button class="btn btn-primary w-50" type="submit">保存</button>
-                    <a class="btn btn-secondary" href="{{ route('admin.top') }}" role="button">戻る</a>
+                    <a class="btn btn-secondary" href="{{ route('admin.news.detail', ['id' => $detail->id]) }}" role="button">戻る</a>
                 </div>
             </div>
         </div>
