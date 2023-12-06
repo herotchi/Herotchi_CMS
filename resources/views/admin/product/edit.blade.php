@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
-@section('title', '管理画面/製品編集')
+@section('title', '管理画面/製品情報編集')
 
 @section('content')
 <nav aria-label="パンくずリスト">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.top') }}">TOP</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.product.list') }}">製品一覧</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.product.detail', ['id' => $detail->id]) }}">製品詳細</a></li>
-        <li class="breadcrumb-item active" aria-current="page">製品編集</li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.product.list') }}">製品情報一覧</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.product.detail', ['id' => $detail->id]) }}">製品情報詳細</a></li>
+        <li class="breadcrumb-item active" aria-current="page">製品情報編集</li>
     </ol>
 </nav>
 
@@ -15,7 +15,7 @@
     <form action="{{ route('admin.product.update') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
         <input type="hidden" name="id" value="{{ $detail->id }}">
-        <div class="card-header">製品編集</div>
+        <div class="card-header">製品情報編集</div>
         <div class="card-body">
             <div class="row g-3">
 

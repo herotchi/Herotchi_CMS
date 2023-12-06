@@ -45,7 +45,7 @@ class ProductController extends Controller
             $newsModel->saveProductNews($productId, ProductConsts::PRODUCT_NEWS_INSERT_MESSAGE);
         });
 
-        return redirect()->route('admin.product.list')->with('msg_success', '製品を登録しました。');
+        return redirect()->route('admin.product.list')->with('msg_success', '製品情報を登録しました。');
     }
 
 
@@ -127,7 +127,7 @@ class ProductController extends Controller
             $newsModel->saveProductNews($productId, ProductConsts::PRODUCT_NEWS_UPDATE_MESSAGE);
         });
 
-        return redirect()->route('admin.product.list')->with('msg_success', '製品を編集しました。');
+        return redirect()->route('admin.product.list')->with('msg_success', '製品情報を編集しました。');
     }
 
 
@@ -138,6 +138,6 @@ class ProductController extends Controller
             $model->deleteProduct($request->validated());
         });
 
-        return redirect()->route('admin.product.list')->with('msg_success', '製品を削除しました。');
+        return redirect()->route('admin.product.list')->with('msg_success', '製品情報を削除しました。');
     }
 }
