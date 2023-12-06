@@ -4,6 +4,10 @@ namespace App\Http\Requests\Admin\FirstCategory;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Validator;
+use Illuminate\Support\Arr;
+use App\Models\FirstCategory;
+
 use App\Consts\FirstCategoryConsts;
 
 class EditRequest extends FormRequest
@@ -35,6 +39,25 @@ class EditRequest extends FormRequest
     {
         return [
             'name' => '大カテゴリ名',
+        ];
+    }
+
+
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+                $data = $validator->valid();
+
+                // 元の自分自身の大カテゴリ名を除く、大カテゴリ名と入力値が重複しているかチェック
+                if (Arr::exists($data, 'id') && Arr::exists($data, 'name')) {
+                    $model = new FirstCategory();
+                    $firstCategory = $model->where('name', $data['name'])->first();
+                    if ($firstCategory && ((string)$firstCategory->id !== $data['id'])) {
+                        $validator->errors()->add('name', '大カテゴリ名が重複しています。');
+                    }
+                }
+            }
         ];
     }
 }

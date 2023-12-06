@@ -173,7 +173,13 @@ class SecondCategoryController extends Controller
         // 中カテゴリ名ユニークチェック用
         $secondCategoryModel = new SecondCategory();
         $secondCategories = $secondCategoryModel::all();
-        $secondCategoryNames = $secondCategories->pluck('name')->toArray();
+        $secondCategoryNames = [];
+        foreach ($secondCategories as $secondCategory) {
+            $secondCategoryNames[$secondCategory->first_category_id][] = $secondCategory->name;
+        }
+
+        // CSVファイル内の重複チェック用
+        $inputNames = [];
 
         foreach ($csvs as $line => $csv) {
 
@@ -185,7 +191,7 @@ class SecondCategoryController extends Controller
             // ヘッダー行
             if ($line === 0) {
                 if (array_values(SecondCategoryConsts::CSV_HEADER) !== $csv) {
-                    $errorMessages['csv_file'][] = $line + 1 . '行目：ヘッダーの項目名が違っています';
+                    $errorMessages['csv_file'][] = $line + 1 . '行目：ヘッダーの項目名が違っています。';
                 }
                 continue;
             }
@@ -195,7 +201,7 @@ class SecondCategoryController extends Controller
                 return $value !== NULL;
             });
             if (count($filteredArray) !== count(SecondCategoryConsts::CSV_HEADER)) {
-                $errorMessages['csv_file'][] = $line + 1 . '行目：項目に過不足があります';
+                $errorMessages['csv_file'][] = $line + 1 . '行目：項目に過不足があります。';
                 continue;
             }
 
@@ -210,20 +216,31 @@ class SecondCategoryController extends Controller
             if($validator->fails()) {
                 // エラーメッセージを「xx行目：エラーメッセージ」の形に整える
                 $errorMessages['csv_file'][] = $line + 1 . '行目：' . $validator->errors()->first();
+
             } elseif (!in_array($lines[$line + 1]['first_category_name'], $firstCategoryNames, true)) {
                 // 大カテゴリが存在しない場合
-                $errorMessages['csv_file'][] = $line + 1 . '行目：存在しない大カテゴリ名が入力されています';
-            } elseif (in_array($lines[$line + 1]['name'], $secondCategoryNames, true)) {
-                // 既にある中カテゴリ名と重複した場合
-                $errorMessages['csv_file'][] = $line + 1 . '行目：既に存在する中カテゴリ名と重複しています';
+                $errorMessages['csv_file'][] = $line + 1 . '行目：存在しない大カテゴリ名が入力されています。';
+
+            } elseif (array_key_exists(array_search($lines[$line + 1]['first_category_name'], $firstCategoryNames, true), $secondCategoryNames)
+            && in_array($lines[$line + 1]['name'], $secondCategoryNames[array_search($lines[$line + 1]['first_category_name'], $firstCategoryNames, true)], true)) {
+                // 大カテゴリが存在する場合、それと紐づく中カテゴリも重複しているかチェックする
+                $errorMessages['csv_file'][] = $line + 1 . '行目：同じ大カテゴリ内で中カテゴリ名が重複しています。';
+
+            } elseif (array_key_exists(array_search($lines[$line + 1]['first_category_name'], $firstCategoryNames, true), $inputNames)
+            && in_array($lines[$line + 1]['name'], $inputNames[array_search($lines[$line + 1]['first_category_name'], $firstCategoryNames, true)], true)) {
+                // CSVファイル内に同じ大カテゴリが存在する場合、それと紐づく中カテゴリも重複しているかチェックする
+                $errorMessages['csv_file'][] = $line + 1 . '行目：CSVファイル内の同じ大カテゴリ内で中カテゴリ名が重複しています。';
             } else {
                 // 入力エラーがない場合
-                $lines[$line + 1]['first_category_id'] = array_search($lines[$line + 1]['first_category_name'], $firstCategoryNames);
+                $lines[$line + 1]['first_category_id'] = array_search($lines[$line + 1]['first_category_name'], $firstCategoryNames, true);
                 $lines[$line + 1]['created_at'] = $today->format('Y-m-d H:i:s');
                 $lines[$line + 1]['updated_at'] = $today->format('Y-m-d H:i:s');
-                // 不要な配列の要素を削除する
-                unset($lines[$line + 1]['first_category_name']);
+
+                $inputNames[$lines[$line + 1]['first_category_id']][] = $lines[$line + 1]['name'];
             }
+
+            // 不要な配列の要素を削除する
+            unset($lines[$line + 1]['first_category_name']);
         }
         
         // CSVファイル内で入力エラーがあった場合
