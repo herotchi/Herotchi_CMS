@@ -75,36 +75,54 @@
 </div>
 
 <div class="card mt-4">
-    <div class="card-header text-end">
-        {{ $lists->links('vendor.pagination.bootstrap-5_number') }}
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">大カテゴリ名</th>
-                    <th>中カテゴリ名</th>
-                    <th>製品名</th>
-                    <th>表示設定</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach ($lists as $list)
-                <tr>
-                    <td scope="rol">{{ $list->first_category->name }}</td>
-                    <td>{{ $list->second_category->name }}</td>
-                    <td>
-                        <a href="{{ route('admin.product.detail', ['id' => $list->id]) }}">{{ $list->name }}</a>
-                    </td>
-                    <td>{{ ProductConsts::RELEASE_FLG_LIST[$list->release_flg] }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div class="card-footer">
-        {{ $lists->withQueryString() }}
-    </div>
+    <form method="POST" action="{{ route('admin.product.batch_delete') }}" novalidate>
+        @csrf
+        <div class="card-header">
+            <div class="d-inline-flex">
+                <button class="btn btn-danger" type="submit">一括削除</button>
+            </div>
+            <div class="d-inline-flex float-end pt-1">
+                {{ $lists->links('vendor.pagination.bootstrap-5_number') }}
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="all_checked" onclick="checkAll();">
+                            </div>
+                        </th>
+                        <th>大カテゴリ名</th>
+                        <th>中カテゴリ名</th>
+                        <th>製品名</th>
+                        <th>表示設定</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($lists as $list)
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $list->id }}" name="delete_flg[]" id="delete_flg_{{ $list->id }}">
+                            </div>
+                        </td>
+                        <td scope="rol">{{ $list->first_category->name }}</td>
+                        <td>{{ $list->second_category->name }}</td>
+                        <td>
+                            <a href="{{ route('admin.product.detail', ['id' => $list->id]) }}">{{ $list->name }}</a>
+                        </td>
+                        <td>{{ ProductConsts::RELEASE_FLG_LIST[$list->release_flg] }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            {{ $lists->withQueryString() }}
+        </div>
+    </form>
 </div>
 <script>
 const firstSelect = document.getElementById('first_category_id');
@@ -180,5 +198,19 @@ firstSelect.addEventListener('change', function() {
         secondSelect.appendChild(newOption);
     }
 });
+
+function checkAll() {
+    var allCheckbox = document.getElementById("all_checked");
+    var deleteCheckboxes = document.getElementsByName("delete_flg[]");
+    if (allCheckbox.checked) {
+        for (var i = 0; i < deleteCheckboxes.length; i++) {
+            deleteCheckboxes[i].checked = true;
+        }
+    } else {
+        for (var i = 0; i < deleteCheckboxes.length; i++) {
+            deleteCheckboxes[i].checked = false;
+        }
+    }
+}
 </script>
 @endsection

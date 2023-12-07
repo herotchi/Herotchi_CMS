@@ -87,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/product/edit/{id}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
     Route::post('/admin/product/update', [AdminProductController::class, 'update'])->name('admin.product.update');
     Route::post('/admin/product/delete', [AdminProductController::class, 'delete'])->name('admin.product.delete');
+    Route::post('/admin/product/batch_delete', [AdminProductController::class, 'batch_delete'])->name('admin.product.batch_delete');
 
     Route::get('/admin/media/add', [AdminMediaController::class, 'add'])->name('admin.media.add');
     Route::post('/admin/media/insert', [AdminMediaController::class, 'insert'])->name('admin.media.insert');

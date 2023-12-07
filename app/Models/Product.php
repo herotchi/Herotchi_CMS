@@ -103,4 +103,15 @@ class Product extends Model
         $product->delete();
         Storage::delete('public/' . ProductConsts::IMAGE_FILE_DIR . '/' . $previousImages[2]);
     }
+
+
+    public function batchDeleteProduct(array $data)
+    {
+        foreach ($data['delete_flg'] as $id) {
+            $product = $this::find($id);
+            $previousImages = explode('/', $product->image);
+            $product->delete();
+            Storage::delete('public/' . ProductConsts::IMAGE_FILE_DIR . '/' . $previousImages[2]);
+        }
+    }
 }

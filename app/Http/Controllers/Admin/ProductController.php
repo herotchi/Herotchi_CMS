@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Product\AddRequest;
 use App\Http\Requests\Admin\Product\ListRequest;
 use App\Http\Requests\Admin\Product\EditRequest;
 use App\Http\Requests\Admin\Product\DeleteRequest;
+use App\Http\Requests\Admin\Product\BatchDeleteRequest;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\FirstCategory;
@@ -139,5 +140,16 @@ class ProductController extends Controller
         });
 
         return redirect()->route('admin.product.list')->with('msg_success', '製品情報を削除しました。');
+    }
+
+
+    public function batch_delete(BatchDeleteRequest $request)
+    {
+        DB::transaction(function () use ($request) {
+            $model = new Product();
+            $model->batchDeleteProduct($request->validated());
+        });
+
+        return redirect()->route('admin.product.list')->with('msg_success', '製品情報を一括削除しました。');
     }
 }
