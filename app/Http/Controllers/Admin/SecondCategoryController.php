@@ -258,6 +258,6 @@ class SecondCategoryController extends Controller
         $csvs = null;
         Storage::delete(SecondCategoryConsts::CSV_FILE_DIR . '/' . $fileName);
 
-        return redirect()->route('admin.second_category.list')->with('msg_success', '中カテゴリを登録しました。');
+        return redirect()->route('admin.second_category.list')->with('msg_success', '中カテゴリを一括登録しました。');
     }
 }

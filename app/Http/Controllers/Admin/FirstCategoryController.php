@@ -217,6 +217,6 @@ class FirstCategoryController extends Controller
         $csvs = null;
         Storage::delete(FirstCategoryConsts::CSV_FILE_DIR . '/' . $fileName);
 
-        return redirect()->route('admin.first_category.list')->with('msg_success', '大カテゴリを登録しました。');
+        return redirect()->route('admin.first_category.list')->with('msg_success', '大カテゴリを一括登録しました。');
     }
 }
