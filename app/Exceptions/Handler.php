@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler
 {
@@ -26,5 +27,15 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+
+    public function render($request, \Throwable $e)
+    {
+        if ($e instanceof TokenMismatchException) {
+            // 公開側と管理側で遷移先を切り替える必要がある
+            return redirect()->route("admin.auth.show_login");
+        }
+        return parent::render($request, $e);
     }
 }
