@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Validator;
 use Illuminate\Validation\Rule;
 
 use App\Consts\MediaConsts;
@@ -42,6 +43,19 @@ class EditRequest extends FormRequest
     {
         return [
             'image' => 'メディア画像'
+        ];
+    }
+
+
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+
+                if ($validator->errors()->has('id')) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
+                }
+            }
         ];
     }
 }

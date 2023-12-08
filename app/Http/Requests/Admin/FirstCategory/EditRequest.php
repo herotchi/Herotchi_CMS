@@ -49,6 +49,10 @@ class EditRequest extends FormRequest
             function (Validator $validator) {
                 $data = $validator->valid();
 
+                if ($validator->errors()->has('id')) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
+                }
+
                 // 元の自分自身の大カテゴリ名を除く、大カテゴリ名と入力値が重複しているかチェック
                 if (Arr::exists($data, 'id') && Arr::exists($data, 'name')) {
                     $model = new FirstCategory();

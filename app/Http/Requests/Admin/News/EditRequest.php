@@ -46,6 +46,10 @@ class EditRequest extends FormRequest
             function (Validator $validator) {
                 $data = $validator->valid();
 
+                if ($validator->errors()->has('id')) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
+                }
+
                 // リンク設定の値によってURLと概要のどちらかのバリデーションが行われる
                 if ($validator->errors()->has('link_flg') === false) {
 
@@ -83,7 +87,6 @@ class EditRequest extends FormRequest
                         if ($overviewValidator->fails()) {
                             $validator->errors()->add('overview', 'リンク設定なしの場合、' . $overviewValidator->errors()->first('overview'));
                         }
-
                     }
                 }
             }

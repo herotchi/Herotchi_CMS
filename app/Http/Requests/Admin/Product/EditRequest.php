@@ -57,6 +57,10 @@ class EditRequest extends FormRequest
             function (Validator $validator) {
                 $data = $validator->valid();
 
+                if ($validator->errors()->has('id')) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
+                }
+
                 // 製品の大カテゴリと中カテゴリが紐づいているかチェック
                 if (Arr::exists($data, 'first_category_id') && Arr::exists($data, 'second_category_id')) {
                     $model = new SecondCategory();
