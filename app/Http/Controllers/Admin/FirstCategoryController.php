@@ -63,7 +63,14 @@ class FirstCategoryController extends Controller
         $model = new FirstCategory();
         $detail = $model->find($id);
 
-        return view('admin.first_category.detail', compact('detail'));
+        $delete_flg = true;
+        $resultSecondCategory = $detail->second_categories()->exists();
+        $resultProduct = $detail->products()->exists();
+        if ($resultSecondCategory || $resultProduct) {
+            $delete_flg = false;
+        }
+
+        return view('admin.first_category.detail', compact(['detail', 'delete_flg']));
     }
 
 
