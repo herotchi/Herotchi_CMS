@@ -29,12 +29,15 @@
             <div class="col-12 text-center my-2">
                 <a class="btn btn-primary w-50" href="{{ route('admin.second_category.edit', ['id' => $detail->id]) }}" role="button">編集</a>
                 <a class="btn btn-secondary" href="{{ route('admin.second_category.list') }}" role="button">戻る</a>
+                @if($delete_flg)
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#deleteModal">削除</button>
+                @endif
             </div>
         </div>
     </div>
 </div>
+@if($delete_flg)
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -57,4 +60,5 @@
         </div>
     </div>
 </div>
+@endif
 @endsection
