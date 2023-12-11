@@ -176,7 +176,8 @@ return [
         'login_id' => 'ログインID',
         'password' => 'パスワード',
         'csv_file' => 'CSVファイル',
-        'code' => '文字コード'
+        'code' => '文字コード',
+        'delete_flg' => '製品情報',
     ],
 
 ];
