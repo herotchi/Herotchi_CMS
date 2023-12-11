@@ -37,6 +37,11 @@ class DeleteRequest extends FormRequest
     {
         return [
             function (Validator $validator) {
+
+                if ($validator->errors()->has('id')) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
+                }
+
                 $data = $validator->valid();
 
                 // 削除対象の中カテゴリが製品と紐づいているかチェック
@@ -47,6 +52,7 @@ class DeleteRequest extends FormRequest
                     $resultProduct = $secondCategory->products()->exists();
                     if ($resultProduct) {
                         $validator->errors()->add('id', '製品と紐づいている中カテゴリは削除できません。');
+                        $this->session()->flash('msg_failure', '製品と紐づいている中カテゴリは削除できません。');
                     }
                 }
             }

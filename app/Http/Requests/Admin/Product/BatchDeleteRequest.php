@@ -4,6 +4,8 @@ namespace App\Http\Requests\Admin\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Validator;
+
 class BatchDeleteRequest extends FormRequest
 {
     /**
@@ -25,6 +27,20 @@ class BatchDeleteRequest extends FormRequest
             //
             'delete_flg' => 'bail|required|array',
             'delete_flg.*' => 'bail|required|integer|exists:products,id',
+        ];
+    }
+
+
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+                if ($validator->errors()->has('delete_flg')) {
+                    $this->session()->flash('msg_failure', $validator->errors()->first());
+                } elseif ($validator->errors()->has('delete_flg.*')) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
+                }
+            }
         ];
     }
 }
