@@ -9,6 +9,6 @@ class TopController extends Controller
     //
     public function top()
     {
-        var_dump(__LINE__);
+        return view('top');
     }
 }
