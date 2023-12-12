@@ -44,7 +44,7 @@
                 
                 <div class="col-md-12">
                     <label for="url" class="form-label">URL</label>
-                    <input type="text" id="url"
+                    <input type="url" id="url"
                         class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}" name="url"
                         value="{{ old('url', $detail->url) }}">
                     <div class="invalid-feedback">{{ $errors->first('url') }}</div>
