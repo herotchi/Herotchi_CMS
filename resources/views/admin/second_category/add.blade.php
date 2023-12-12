@@ -21,7 +21,7 @@
                         <span class="text-danger font-weight-bold">※</span>
                     </label>
                     <select id="first_category_id" class="form-select{{ $errors->has('first_category_id') ? ' is-invalid' : '' }}"
-                        name="first_category_id">
+                        name="first_category_id" required>
                         <option value="">---</option>
                         @foreach($firstCategories as $firstCategory)
                         <option value="{{ $firstCategory->id }}" @if(old('first_category_id')==$firstCategory->id) selected="selected" @endif>
@@ -37,7 +37,7 @@
                     </label>
                     <input type="text" id="name"
                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                        value="{{ old('name') }}" required autofocus>
+                        value="{{ old('name') }}" required>
                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                 </div>
             </div>

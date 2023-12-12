@@ -18,7 +18,7 @@
                     <label for="title" class="form-label">タイトル</label>
                     <input type="text" id="title"
                         class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title"
-                        value="{{ old('title', $input['title']) }}" autofocus>
+                        value="{{ old('title', $input['title']) }}">
                     <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                 </div>
 

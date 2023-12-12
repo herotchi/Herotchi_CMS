@@ -25,7 +25,7 @@
                 <div class="btn-group mt-0">
                     @foreach(MediaConsts::MEDIA_FLG_LIST as $key => $value)
                     <input type="radio" class="btn-check" name="media_flg" id="media_flg_{{ $key }}"
-                        value="{{ $key }}" autocomplete="off" @if(old('media_flg', $detail->media_flg)==$key) checked @endif>
+                        value="{{ $key }}" autocomplete="off" @if(old('media_flg', $detail->media_flg)==$key) checked @endif required>
                     <label class="btn btn-outline-success form-control{{ $errors->has('media_flg') ? ' is-invalid' : '' }}"
                         for="media_flg_{{ $key }}">{{ $value }}</label>
                     @endforeach
@@ -40,7 +40,7 @@
                     <img src="{{ asset($detail->image) }}">
                     <input type="file" id="image"
                         class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image"
-                        value="{{ old('image', $detail->image) }}">
+                        value="{{ old('image', $detail->image) }}" required>
                     <div class="invalid-feedback">{{ $errors->first('image') }}</div>
                 </div>
 
@@ -50,15 +50,17 @@
                     </label>
                     <input type="text" id="alt"
                         class="form-control{{ $errors->has('alt') ? ' is-invalid' : '' }}" name="alt"
-                        value="{{ old('alt', $detail->alt) }}" required autofocus>
+                        value="{{ old('alt', $detail->alt) }}" required>
                     <div class="invalid-feedback">{{ $errors->first('alt') }}</div>
                 </div>
                 
                 <div class="col-md-12">
-                    <label for="url" class="form-label">URL</label>
+                    <label for="url" class="form-label">URL
+                        <span class="text-danger font-weight-bold">※</span>
+                    </label>
                     <input type="text" id="url"
                         class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}" name="url"
-                        value="{{ old('url', $detail->url) }}">
+                        value="{{ old('url', $detail->url) }}" required>
                     <div class="invalid-feedback">{{ $errors->first('url') }}</div>
                 </div>
 
@@ -68,7 +70,7 @@
                 <div class="btn-group mt-0">
                     @foreach(NewsConsts::RELEASE_FLG_LIST as $key => $value)
                     <input type="radio" class="btn-check" name="release_flg" id="release_flg_{{ $key }}"
-                        value="{{ $key }}" autocomplete="off" @if(old('release_flg', $detail->release_flg)==$key) checked @endif>
+                        value="{{ $key }}" autocomplete="off" @if(old('release_flg', $detail->release_flg)==$key) checked @endif required>
                     <label class="btn btn-outline-success form-control{{ $errors->has('release_flg') ? ' is-invalid' : '' }}"
                         for="release_flg_{{ $key }}">{{ $value }}</label>
                     @endforeach

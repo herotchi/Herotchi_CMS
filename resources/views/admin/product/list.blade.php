@@ -44,7 +44,7 @@
                     <label for="name" class="form-label">製品名</label>
                     <input type="text" id="name"
                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                        value="{{ old('name', $input['name']) }}" autofocus>
+                        value="{{ old('name', $input['name']) }}">
                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                 </div>
 

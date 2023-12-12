@@ -24,7 +24,7 @@
                     </label>
                     <input type="text" id="name"
                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                        value="{{ old('name', $detail->name) }}" required autofocus>
+                        value="{{ old('name', $detail->name) }}" required>
                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                 </div>
             </div>
