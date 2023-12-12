@@ -22,7 +22,7 @@
                     </label>
                     <input type="text" id="name"
                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                        value="{{ old('name') }}" required autofocus>
+                        value="{{ old('name') }}" required>
                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                 </div>
 
@@ -42,7 +42,7 @@
                     </label>
                     <textarea id="mail_body"
                         class="form-control{{ $errors->has('mail_body') ? ' is-invalid' : '' }}" name="mail_body"
-                        rows="4">{{ old('mail_body') }}</textarea>
+                        rows="4" required>{{ old('mail_body') }}</textarea>
                     <div class="invalid-feedback">{{ $errors->first('mail_body') }}</div>
                 </div>
 

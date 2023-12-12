@@ -24,7 +24,7 @@
                         <span class="text-danger font-weight-bold">※</span>
                     </label>
                     <select id="first_category_id" class="form-select{{ $errors->has('first_category_id') ? ' is-invalid' : '' }}"
-                        name="first_category_id">
+                        name="first_category_id" required>
                         <option value="">---</option>
                         @foreach($firstCategories as $firstCategory)
                         <option value="{{ $firstCategory->id }}" @if(old('first_category_id', $detail->first_category_id)==$firstCategory->id) selected="selected" @endif>
@@ -39,7 +39,7 @@
                         <span class="text-danger font-weight-bold">※</span>
                     </label>
                     <select id="second_category_id" class="form-select{{ $errors->has('second_category_id') ? ' is-invalid' : '' }}"
-                        name="second_category_id">
+                        name="second_category_id" required>
                         <option value="">---</option>
                     </select>
                     <div class="invalid-feedback">{{ $errors->first('second_category_id') }}</div>
@@ -51,7 +51,7 @@
                     </label>
                     <input type="text" id="name"
                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                        value="{{ old('name', $detail->name) }}" required autofocus>
+                        value="{{ old('name', $detail->name) }}" required>
                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                 </div>
 
@@ -62,7 +62,7 @@
                     <img src="{{ asset($detail->image) }}">
                     <input type="file" id="image"
                         class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image"
-                        value="{{ old('image', $detail->image) }}">
+                        value="{{ old('image', $detail->image) }}" required>
                     <div class="invalid-feedback">{{ $errors->first('image') }}</div>
                 </div>
 
@@ -70,7 +70,7 @@
                     <label for="detail" class="form-label">概要</label>
                     <textarea id="detail"
                         class="form-control{{ $errors->has('detail') ? ' is-invalid' : '' }}" name="detail"
-                        rows="4">{{ old('detail', $detail->detail) }}</textarea>
+                        rows="4" required>{{ old('detail', $detail->detail) }}</textarea>
                     <div class="invalid-feedback">{{ $errors->first('detail') }}</div>
                 </div>
 
@@ -80,7 +80,7 @@
                 <div class="btn-group mt-0">
                     @foreach(NewsConsts::RELEASE_FLG_LIST as $key => $value)
                     <input type="radio" class="btn-check" name="release_flg" id="release_flg_{{ $key }}"
-                        value="{{ $key }}" autocomplete="off" @if(old('release_flg', $detail->release_flg)==$key) checked @endif>
+                        value="{{ $key }}" autocomplete="off" @if(old('release_flg', $detail->release_flg)==$key) checked @endif required>
                     <label class="btn btn-outline-success form-control{{ $errors->has('release_flg') ? ' is-invalid' : '' }}"
                         for="release_flg_{{ $key }}">{{ $value }}</label>
                     @endforeach

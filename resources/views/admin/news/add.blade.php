@@ -21,7 +21,7 @@
                     </label>
                     <input type="text" id="title"
                         class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title"
-                        value="{{ old('title') }}" required autofocus>
+                        value="{{ old('title') }}" required>
                     <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                 </div>
 
@@ -31,7 +31,7 @@
                 <div class="btn-group mt-0">
                     @foreach(NewsConsts::LINK_FLG_LIST as $key => $value)
                     <input type="radio" class="btn-check" name="link_flg" id="link_flg_{{ $key }}"
-                        value="{{ $key }}" autocomplete="off" @if(old('link_flg')==$key) checked @endif>
+                        value="{{ $key }}" autocomplete="off" @if(old('link_flg')==$key) checked @endif required>
                     <label class="btn btn-outline-success form-control{{ $errors->has('link_flg') ? ' is-invalid' : '' }}"
                         for="link_flg_{{ $key }}">{{ $value }}</label>
                     @endforeach
@@ -61,7 +61,7 @@
                     </label>
                     <input type="date" id="release_date"
                         class="form-control{{ $errors->has('release_date') ? ' is-invalid' : '' }}" name="release_date"
-                        value="{{ old('release_date') }}">
+                        value="{{ old('release_date') }}" required>
                     <div class="invalid-feedback">{{ $errors->first('release_date') }}</div>
                 </div>
 
@@ -71,7 +71,7 @@
                 <div class="btn-group mt-0">
                     @foreach(NewsConsts::RELEASE_FLG_LIST as $key => $value)
                     <input type="radio" class="btn-check" name="release_flg" id="release_flg_{{ $key }}"
-                        value="{{ $key }}" autocomplete="off" @if(old('release_flg')==$key) checked @endif>
+                        value="{{ $key }}" autocomplete="off" @if(old('release_flg')==$key) checked @endif required>
                     <label class="btn btn-outline-success form-control{{ $errors->has('release_flg') ? ' is-invalid' : '' }}"
                         for="release_flg_{{ $key }}">{{ $value }}</label>
                     @endforeach

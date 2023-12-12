@@ -26,7 +26,7 @@
                 <div class="btn-group mt-0">
                     @foreach(FirstCategoryConsts::CSV_CODE_LIST as $key => $value)
                     <input type="radio" class="btn-check" name="code" id="code_{{ $key }}"
-                        value="{{ $key }}" autocomplete="off" @if(old('code')==$key) checked @endif>
+                        value="{{ $key }}" autocomplete="off" @if(old('code')==$key) checked @endif required>
                     <label class="btn btn-outline-success form-control{{ $errors->has('code') ? ' is-invalid' : '' }}"
                         for="code_{{ $key }}">{{ $value }}</label>
                     @endforeach
@@ -40,7 +40,7 @@
                     </label>
                     <input type="file" id="csv_file"
                         class="form-control{{ $errors->has('csv_file') ? ' is-invalid' : '' }}" name="csv_file"
-                        value="{{ old('csv_file') }}">
+                        value="{{ old('csv_file') }}" required>
                     @if ($errors->has('csv_file'))
                     @foreach ($errors->all() as $error)
                     <div class="invalid-feedback">{{ $error }}</div>

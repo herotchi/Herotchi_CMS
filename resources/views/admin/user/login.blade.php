@@ -22,7 +22,7 @@
                     </label>
                     <input type="text" id="login_id"
                         class="form-control{{ $errors->has('login_id') ? ' is-invalid' : '' }}" name="login_id"
-                        value="{{ old('login_id', Auth::user()->login_id) }}" required autofocus>
+                        value="{{ old('login_id', Auth::user()->login_id) }}" required>
                     <div class="invalid-feedback">{{ $errors->first('login_id') }}</div>
                 </div>
 

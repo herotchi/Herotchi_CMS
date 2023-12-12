@@ -18,7 +18,7 @@
                     <label for="alt" class="form-label">代替テキスト</label>
                     <input type="text" id="alt"
                         class="form-control{{ $errors->has('alt') ? ' is-invalid' : '' }}" name="alt"
-                        value="{{ old('alt', $input['alt']) }}" autofocus>
+                        value="{{ old('alt', $input['alt']) }}">
                     <div class="invalid-feedback">{{ $errors->first('alt') }}</div>
                 </div>
 

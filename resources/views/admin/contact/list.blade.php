@@ -18,7 +18,7 @@
                     <label for="no" class="form-label">お問い合わせ番号</label>
                     <input type="text" id="no"
                         class="form-control{{ $errors->has('no') ? ' is-invalid' : '' }}" name="no"
-                        value="{{ old('no', $input['no']) }}" autofocus>
+                        value="{{ old('no', $input['no']) }}">
                     <div class="invalid-feedback">{{ $errors->first('no') }}</div>
                 </div>
 
@@ -26,7 +26,7 @@
                     <label for="mail_body" class="form-label">お問い合わせ内容</label>
                     <input type="text" id="mail_body"
                         class="form-control{{ $errors->has('mail_body') ? ' is-invalid' : '' }}" name="mail_body"
-                        value="{{ old('mail_body', $input['mail_body']) }}" autofocus>
+                        value="{{ old('mail_body', $input['mail_body']) }}">
                     <div class="invalid-feedback">{{ $errors->first('mail_body') }}</div>
                 </div>
 
