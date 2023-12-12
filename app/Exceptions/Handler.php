@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Session\TokenMismatchException;
+use Illuminate\Support\Facades\Auth;
 
 class Handler extends ExceptionHandler
 {
@@ -26,5 +28,19 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+
+    public function render($request, \Throwable $e)
+    {
+        if ($e instanceof TokenMismatchException) {
+            // 公開側と管理側で遷移先を切り替える
+            if (Auth::check()) { // ログイン済みは管理側ログインページに飛ばす
+                return redirect()->route("admin.auth.show_login");
+            } else { // 非ログインは公開側トップページに飛ばす
+                return redirect()->route("top");
+            }
+        }
+        return parent::render($request, $e);
     }
 }

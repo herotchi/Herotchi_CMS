@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Herotchi_CMS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo',
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'ja_JP',
 
     /*
     |--------------------------------------------------------------------------
@@ -183,6 +183,14 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'NewsConsts' => App\Consts\NewsConsts::class,
+        'FirstCategoryConsts' => App\Consts\FirstCategoryConsts::class,
+        'SecondCategoryConsts' => App\Consts\SecondCategoryConsts::class,
+        'ProductConsts' => App\Consts\ProductConsts::class,
+        'MediaConsts' => App\Consts\MediaConsts::class,
+        'ContactConsts' => App\Consts\ContactConsts::class,
+        'AuthConsts' => App\Consts\AuthConsts::class,
+        'UserConsts' => App\Consts\UserConsts::class,
     ])->toArray(),
 
 ];
