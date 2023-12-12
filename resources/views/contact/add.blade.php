@@ -30,7 +30,7 @@
                     <label for="mail_address" class="form-label">メールアドレス
                         <span class="text-danger font-weight-bold">※</span>
                     </label>
-                    <input type="text" id="mail_address"
+                    <input type="email" id="mail_address"
                         class="form-control{{ $errors->has('mail_address') ? ' is-invalid' : '' }}" name="mail_address"
                         value="{{ old('mail_address') }}" required>
                     <div class="invalid-feedback">{{ $errors->first('mail_address') }}</div>

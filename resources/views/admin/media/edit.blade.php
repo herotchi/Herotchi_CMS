@@ -58,7 +58,7 @@
                     <label for="url" class="form-label">URL
                         <span class="text-danger font-weight-bold">※</span>
                     </label>
-                    <input type="text" id="url"
+                    <input type="url" id="url"
                         class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}" name="url"
                         value="{{ old('url', $detail->url) }}" required>
                     <div class="invalid-feedback">{{ $errors->first('url') }}</div>
