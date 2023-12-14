@@ -52,6 +52,36 @@
         </div>
     </div>
     <div class="col-md-9">
+    <div class="card">
+            <div class="card-body">
+                <div class="card mb-2">
+                    <div class="card-body p-2">
+                        <span class="d-block">お知らせ</span>
+                    </div>
+                </div>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        @foreach($news as $list)
+                        <p class="mb-1">{{ $list->release_date->format('Y年m月d日') }}</p>
+                        <p class="ms-4 mb-4">
+                        @if ($list->link_flg == NewsConsts::LINK_FLG_ON)
+                            <a href="{{ $list->url }}">
+                                {{ $list->title }}
+                            </a>
+                        @else
+                            <a href="{{ route('news.detail', ['id' => $list->id]) }}">
+                                {{ $list->title }}
+                            </a>
+                        @endif
+                        </p>
+                        @endforeach
+                        <a class="float-end" href="{{ route('news.list') }}">
+                            <p>過去のお知らせを見る</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
