@@ -95,4 +95,16 @@ class Media extends Model
 
         return $lists;
     }
+
+
+    public function getPickUps()
+    {
+        $query = $this::query();
+        $query->where('media_flg', MediaConsts::MEDIA_FLG_PICKUP);
+        $query->where('release_flg', MediaConsts::RELEASE_FLG_ON);
+        $query->orderBy('id', 'desc');
+        $lists = $query->get();
+
+        return $lists;
+    }
 }
