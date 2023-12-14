@@ -21,5 +21,6 @@ class NewsConsts
         self::RELEASE_FLG_OFF => '非表示',
     ];
 
+    public const TOP_LIST_LIMIT = 10;
     public const PAGENATE_LIST_LIMIT = 2;
 }

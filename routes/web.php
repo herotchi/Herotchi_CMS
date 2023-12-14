@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 
@@ -37,7 +38,10 @@ Route::middleware(['guest'])->group(function () {
 
     Route::get('/', [TopController::class, 'top'])->name('top');
 
-    Route::post('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
+    Route::get('/news/list', [NewsController::class, 'list'])->name('news.list');
+    Route::get('/news/{id}', [NewsController::class, 'detail'])->name('news.detail');
+
+    Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
 
     Route::get('/contact/add', [ContactController::class, 'add'])->name('contact.add');
     Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
