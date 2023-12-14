@@ -13,7 +13,8 @@ class TopController extends Controller
     {
         $mediaModel = new Media();
         $carousels = $mediaModel->getCarousels();
+        $pickUps = $mediaModel->getPickUps();
 
-        return view('top', compact('carousels'));
+        return view('top', compact(['carousels', 'pickUps']));
     }
 }
