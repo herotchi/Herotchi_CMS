@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\News;
+
 class NewsController extends Controller
 {
     public function list()
     {
-        var_dump(__LINE__);
+        $model = new News();
+        $lists = $model->getLists();
+
+        return view('news.list', compact('lists'));
     }
 
 

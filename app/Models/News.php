@@ -65,7 +65,7 @@ class News extends Model
 
         $query->orderBy('release_date', 'desc')->orderBy('id', 'desc');
 
-        $lists = $query->paginate(NewsConsts::PAGENATE_LIST_LIMIT);
+        $lists = $query->paginate(NewsConsts::ADMIN_PAGENATE_LIST_LIMIT);
 
         return $lists;
     }
@@ -116,8 +116,22 @@ class News extends Model
         $query = $this::query();
         $query->where('release_date', '<=', $today->format('Y-m-d'));
         $query->where('release_flg', NewsConsts::RELEASE_FLG_ON);
-        $query->orderBy('release_date', 'desc');
+        $query->orderBy('release_date', 'desc')->orderBy('id', 'desc');
         $lists = $query->limit(NewsConsts::TOP_LIST_LIMIT)->get();
+
+        return $lists;
+    }
+
+
+    public function getLists()
+    {
+        $today = new DateTime();
+        $query = $this::query();
+        $query->where('release_date', '<=', $today->format('Y-m-d'));
+        $query->where('release_flg', NewsConsts::RELEASE_FLG_ON);
+        $query->orderBy('release_date', 'desc')->orderBy('id', 'desc');
+
+        $lists = $query->paginate(NewsConsts::PAGENATE_LIST_LIMIT);
 
         return $lists;
     }
