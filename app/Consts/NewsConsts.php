@@ -13,7 +13,7 @@ class NewsConsts
         self::LINK_FLG_OFF => 'なし',
     ];
     public const URL_LENGTH_MAX = 255;
-    public const OVERVIEW_LENGTH_MAX = 1000;
+    public const OVERVIEW_LENGTH_MAX = 2000;
     public const RELEASE_FLG_ON = 1;
     public const RELEASE_FLG_OFF = 2;
     public const RELEASE_FLG_LIST = [

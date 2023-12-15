@@ -65,7 +65,7 @@
                         <p class="mb-1">{{ $list->release_date->format('Y年m月d日') }}</p>
                         <p class="ms-4 mb-4">
                         @if ($list->link_flg == NewsConsts::LINK_FLG_ON)
-                            <a href="{{ $list->url }}">
+                            <a href="{{ $list->url }}" target="_blank" rel="noopener noreferrer">
                                 {{ $list->title }}
                             </a>
                         @else
