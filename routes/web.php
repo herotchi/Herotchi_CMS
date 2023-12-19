@@ -41,6 +41,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/news/list', [NewsController::class, 'list'])->name('news.list');
     Route::get('/news/{id}', [NewsController::class, 'detail'])->name('news.detail');
 
+    Route::get('/product/list', [ProductController::class, 'list'])->name('product.list');
     Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
 
     Route::get('/contact/add', [ContactController::class, 'add'])->name('contact.add');

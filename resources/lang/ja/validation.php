@@ -178,6 +178,7 @@ return [
         'csv_file' => 'CSVファイル',
         'code' => '文字コード',
         'delete_flg' => '製品情報',
+        'keyword' => 'キーワード'
     ],
 
 ];
