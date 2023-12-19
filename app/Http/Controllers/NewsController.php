@@ -28,7 +28,7 @@ class NewsController extends Controller
         );
 
         if ($validator->fails()) {
-            return redirect()->route('top')->with('msg_failure', '不正な値が入力されました。');
+            return redirect()->route('news.list')->with('msg_failure', '不正な値が入力されました。');
         }
 
         $model = new News();

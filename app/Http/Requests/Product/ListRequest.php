@@ -75,10 +75,10 @@ class ListRequest extends FormRequest
                     if (!$result) {
                         $validator->errors()->add('second_category_id', '大カテゴリと紐づいていない中カテゴリが選択されました。');
                     }
+                }
 
-                    if ($validator->errors()->any()) {
-                        $this->session()->flash('msg_failure', '不正な値が入力されました。');
-                    }
+                if ($validator->errors()->any()) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
                 }
             }
         ];
