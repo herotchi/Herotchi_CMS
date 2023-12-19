@@ -11,7 +11,7 @@
 </nav>
 
 <div class="card">
-    <div class="card-header">{{ $detail->title }}</div>
+    <div class="card-header"><h5 class="my-2">{{ $detail->title }}</h5></div>
     <div class="card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
