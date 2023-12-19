@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\Product\ListRequest;
 
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 use App\Models\FirstCategory;
 use App\Models\SecondCategory;
 use App\Models\Product;
+
+use App\Consts\ProductConsts;
 
 class ProductController extends Controller
 {
@@ -58,6 +64,26 @@ class ProductController extends Controller
 
     public function detail($id)
     {
-        var_dump(__LINE__);
+
+        $validator = Validator::make(
+            ['id' => $id],
+            ['id' => [
+                'bail', 
+                'required',
+                'integer',
+                Rule::exists('products', 'id')->where(function (Builder $query) {
+                    return $query->where('release_flg', ProductConsts::RELEASE_FLG_ON);
+                }),
+            ]]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->route('product.list')->with('msg_failure', '不正な値が入力されました。');
+        }
+
+        $model = new Product();
+        $detail = $model->find($id);
+
+        return view('product.detail', compact('detail'));
     }
 }

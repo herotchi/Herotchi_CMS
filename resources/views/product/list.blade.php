@@ -79,8 +79,12 @@
                             <div class="card">
                                 <img src="{{ asset($product->image) }}" class="card-img-top" style="height:250px;">
                                 <div class="card-body">
-                                    <p class="card-text mb-1 text-secondary">{{ $product->first_category->name }}</p>
-                                    <p class="card-text mb-2 text-secondary">{{ $product->second_category->name }}</p>
+                                    <p class="card-text mb-1 text-secondary fs-6">
+                                        <small>
+                                            {{ $product->first_category->name }},
+                                            {{ $product->second_category->name }}
+                                        </small>
+                                    </p>
                                     <p class="card-text"><b>{{ $product->name }}</b></p>
                                 </div>
                             </div>
