@@ -80,7 +80,9 @@ class ListRequest extends FormRequest
                 $data = $validator->valid();
 
                 // 製品の大カテゴリと中カテゴリが紐づいているかチェック
-                if (Arr::exists($data, 'first_category_id') && Arr::exists($data, 'second_category_id') && $data['first_category_id'] && $data['second_category_id']) {
+                if ($validator->errors()->has('first_category_id') === false && $validator->errors()->has('second_category_id') === false
+                 && Arr::exists($data, 'first_category_id') && Arr::exists($data, 'second_category_id') 
+                 && $data['first_category_id'] && $data['second_category_id']) {
                     $model = new SecondCategory();
                     $result = $model
                         ->where('first_category_id', $data['first_category_id'])

@@ -54,7 +54,7 @@ class EditRequest extends FormRequest
                 }
 
                 // 元の自分自身の大カテゴリ名を除く、大カテゴリ名と入力値が重複しているかチェック
-                if (Arr::exists($data, 'id') && Arr::exists($data, 'name')) {
+                if ($validator->errors()->has('id') === false && $validator->errors()->has('name') === false) {
                     $model = new FirstCategory();
                     $firstCategory = $model->where('name', $data['name'])->first();
                     if ($firstCategory && ((string)$firstCategory->id !== $data['id'])) {
