@@ -1,0 +1,9 @@
+<footer class="my-1 pt-4 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2023− へろっちシマウマ～ず</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" target="_blank"
+            rel="noopener noreferrer">利用規約</a></li>
+        <li class="list-inline-item"><a href="#" target="_blank"
+            rel="noopener noreferrer">プライバシー</a></li>
+    </ul>
+</footer>

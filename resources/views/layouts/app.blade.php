@@ -29,6 +29,7 @@
             <main>
                 @yield('content')
             </main>
+            @include('layouts.footer')
         </div>
         @include('layouts.flash')
     </body>
