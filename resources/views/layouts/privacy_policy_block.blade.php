@@ -54,9 +54,9 @@
     <li>本サービスでは同サービスの利用状況を把握するためにGoogle Analyticsを利用し、Google Analyticsから提供されるCookieを使用しています。Google Analyticsによって個人を特定する情報は取得していません。</li>
     <li>Google Analytics の利用により収集されたデータは、Google社のプライバシーポリシーに基づいて管理されています。Google Analyticsの利用規約・プライバシーポリシーについてはGoogle Analytics のホームページでご確認ください。
         <br>
-        <a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank" rel="noopener noreferrer">Google アナリティクス サービス利用規約</a>
+        <a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank" rel="noopener noreferrer">Google アナリティクス サービス利用規約@include('layouts.blank')</a>
         <br>
-        <a href="https://policies.google.com/" target="_blank" rel="noopener noreferrer">Google ポリシーと規約</a>
+        <a href="https://policies.google.com/" target="_blank" rel="noopener noreferrer">Google ポリシーと規約@include('layouts.blank')</a>
     </li>
 </ol>
 <h4>5. 第三者提供</h4>
@@ -81,9 +81,9 @@
 <h4>9. お問い合わせ窓口</h4>
 <p>ご意見、ご質問、苦情のお申出その他利用者情報の取扱いに関するお問い合わせは、下記の窓口までお願いいたします。
     <br>
-    <a href="https://twitter.com/herotchi" target="_blank" rel="noopener noreferrer">へろっちシマウマ～ずのTwitter</a>
+    <a href="https://twitter.com/herotchi" target="_blank" rel="noopener noreferrer">へろっちシマウマ～ずのTwitter @include('layouts.blank')</a>
 </p>
 <h4>10. プライバシーポリシーの変更手続</h4>
 <p>当サークルは、必要に応じて、本ポリシーを変更します。但し、法令上ユーザーの同意が必要となるような本ポリシーの変更を行う場合、変更後の本ポリシーは、当サークル所定の方法で変更に同意したユーザーに対してのみ適用されるものとします。なお、当サークルは、本ポリシーを変更する場合には、変更後の本ポリシーの施行時期及び内容を当サークルのウェブサイト上での表示その他の適切な方法により周知し、またはユーザーに通知します。</p>
-<p>【2021年7月18日制定】</p>
+<p>【2023年12月21日制定】</p>
 <p class="tR">以上</p>

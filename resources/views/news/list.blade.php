@@ -16,7 +16,7 @@
         <p class="ms-4 mb-4">
             @if ($list->link_flg == NewsConsts::LINK_FLG_ON)
             <a href="{{ $list->url }}" target="_blank" rel="noopener noreferrer">
-                {{ $list->title }}
+                {{ $list->title }}@include('layouts.blank')
             </a>
             @else
                 <a href="{{ route('news.detail', ['id' => $list->id]) }}">
