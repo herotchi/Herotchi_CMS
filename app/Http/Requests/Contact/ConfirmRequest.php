@@ -36,6 +36,7 @@ class ConfirmRequest extends FormRequest
             'name' => 'bail|required|string|max:' . ContactConsts::NAME_LENGTH_MAX,
             'mail_address' => 'bail|required|string|email:strict,dns,spoof|max:' . ContactConsts::MAIL_ADDRESS_LENGTH_MAX,
             'mail_body' => 'bail|required|string|max:' . ContactConsts::MAIL_BODY_LENGTH_MAX,
+            'user_policy'  => 'bail|required|accepted',
         ];
     }
 

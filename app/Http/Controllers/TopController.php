@@ -21,4 +21,10 @@ class TopController extends Controller
 
         return view('top', compact(['news', 'carousels', 'pickUps']));
     }
+
+
+    public function terms_of_use()
+    {
+        return view('terms_of_use');
+    }
 }
