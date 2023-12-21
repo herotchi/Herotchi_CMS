@@ -68,7 +68,7 @@
             @foreach ($lists as $list)
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                 <a class="link-underline link-underline-opacity-0" href="{{ route('admin.media.detail', ['id' => $list->id]) }}">
-                    <div class="card">
+                    <div class="card text-bg-light">
                         <img src="{{ asset($list->image) }}" class="card-img-top w-100 h-auto" alt="{{ $list->alt }}">
                         <div class="card-body">
                             <p class="card-text">メディア設定：{{ MediaConsts::MEDIA_FLG_LIST[$list->media_flg] }}</p>
