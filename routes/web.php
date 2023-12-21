@@ -50,6 +50,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
 
     Route::get('/terms_of_use', [TopController::class, 'terms_of_use'])->name('terms_of_use');
+    Route::get('/privacy_policy', [TopController::class, 'privacy_policy'])->name('privacy_policy');
 });
 
 

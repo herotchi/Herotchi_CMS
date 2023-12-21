@@ -27,4 +27,10 @@ class TopController extends Controller
     {
         return view('terms_of_use');
     }
+
+
+    public function privacy_policy()
+    {
+        return view('privacy_policy');
+    }
 }
