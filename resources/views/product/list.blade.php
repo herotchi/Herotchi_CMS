@@ -77,7 +77,7 @@
                     <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
                         <a class="link-underline link-underline-opacity-0" href="{{ route('product.detail', ['id' => $product->id]) }}">
                             <div class="card">
-                                <img src="{{ asset($product->image) }}" class="card-img-top" style="height:250px;">
+                                <img src="{{ asset($product->image) }}" class="card-img-top w-100 h-auto">
                                 <div class="card-body">
                                     <p class="card-text mb-1 text-secondary fs-6">
                                         <small>

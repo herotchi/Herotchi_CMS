@@ -43,7 +43,7 @@
                 <div class="card mb-2">
                     <div class="card-body">
                         <a href="{{ $pickUp->url }}">
-                            <img src="{{ asset($pickUp->image) }}" class="d-block" alt="{{ $carousel->alt }}">
+                            <img src="{{ asset($pickUp->image) }}" class="d-block w-100 h-auto" alt="{{ $carousel->alt }}">
                         </a>
                     </div>
                 </div>
