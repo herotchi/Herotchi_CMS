@@ -48,6 +48,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
     Route::post('/contact/insert', [ContactController::class, 'insert'])->name('contact.insert');
     Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
+
+    Route::get('/terms_of_use', [TopController::class, 'terms_of_use'])->name('terms_of_use');
 });
 
 
