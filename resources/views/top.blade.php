@@ -34,13 +34,13 @@
     <div class="col-md-3">
         <div class="card">
             <div class="card-body">
-                <div class="card mb-2">
+                <div class="card text-bg-primary mb-2">
                     <div class="card-body p-2">
-                        <span class="d-block">PICK UP</span>
+                        <span class="d-block text-center">PICK UP</span>
                     </div>
                 </div>
                 @foreach($pickUps as $pickUp)
-                <div class="card mb-2">
+                <div class="card text-bg-light mb-2">
                     <div class="card-body">
                         <a href="{{ $pickUp->url }}">
                             <img src="{{ asset($pickUp->image) }}" class="d-block w-100 h-auto" alt="{{ $carousel->alt }}">
@@ -54,7 +54,7 @@
     <div class="col-md-9">
     <div class="card">
             <div class="card-body">
-                <div class="card mb-2">
+                <div class="card text-bg-success mb-2">
                     <div class="card-body p-2">
                         <span class="d-block">お知らせ</span>
                     </div>
