@@ -33,8 +33,8 @@
                 </div>
                 <div class="mt-0{{ $errors->has('link_flg') ? ' is-invalid' : '' }}"></div>
                 <div class="invalid-feedback">{{ $errors->first('link_flg') }}</div>
-                {{--<div class="mt-0{{ $errors->has('link_flg.*') ? ' is-invalid' : '' }}"></div>
-                <div class="invalid-feedback">{{ $errors->first('link_flg.*') }}</div>--}}
+                <div class="mt-0{{ $errors->has('link_flg.*') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('link_flg.*') }}</div>
 
                 <div class="col-md-6">
                     <label for="release_date_from" class="form-label">公開日～</label>
@@ -63,6 +63,8 @@
                 </div>
                 <div class="mt-0{{ $errors->has('release_flg') ? ' is-invalid' : '' }}"></div>
                 <div class="invalid-feedback">{{ $errors->first('release_flg') }}</div>
+                <div class="mt-0{{ $errors->has('release_flg.*') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('release_flg.*') }}</div>
 
             </div>
         </div>
