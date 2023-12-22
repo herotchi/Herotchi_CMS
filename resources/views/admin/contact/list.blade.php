@@ -57,6 +57,8 @@
                 </div>
                 <div class="mt-0{{ $errors->has('status') ? ' is-invalid' : '' }}"></div>
                 <div class="invalid-feedback">{{ $errors->first('status') }}</div>
+                <div class="mt-0{{ $errors->has('status.*') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('status.*') }}</div>
 
             </div>
         </div>

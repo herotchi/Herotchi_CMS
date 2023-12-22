@@ -33,6 +33,8 @@
                 </div>
                 <div class="mt-0{{ $errors->has('media_flg') ? ' is-invalid' : '' }}"></div>
                 <div class="invalid-feedback">{{ $errors->first('media_flg') }}</div>
+                <div class="mt-0{{ $errors->has('media_flg.*') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('media_flg.*') }}</div>
 
                 <label class="form-label">表示設定</label>
                 <div class="btn-group mt-0">
@@ -45,6 +47,8 @@
                 </div>
                 <div class="mt-0{{ $errors->has('release_flg') ? ' is-invalid' : '' }}"></div>
                 <div class="invalid-feedback">{{ $errors->first('release_flg') }}</div>
+                <div class="mt-0{{ $errors->has('release_flg.*') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('release_flg.*') }}</div>
 
             </div>
         </div>

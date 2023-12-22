@@ -56,10 +56,11 @@
                     <label class="btn btn-outline-success form-control{{ $errors->has('release_flg') ? ' is-invalid' : '' }}"
                         for="release_flg_{{ $key }}">{{ $value }}</label>
                     @endforeach
-                    
                 </div>
                 <div class="mt-0{{ $errors->has('release_flg') ? ' is-invalid' : '' }}"></div>
                 <div class="invalid-feedback">{{ $errors->first('release_flg') }}</div>
+                <div class="mt-0{{ $errors->has('release_flg.*') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('release_flg.*') }}</div>
 
             </div>
         </div>
