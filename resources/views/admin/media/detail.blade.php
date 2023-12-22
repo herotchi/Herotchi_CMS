@@ -28,7 +28,7 @@
             </li>
             <li class="list-group-item">
                 <h5>URL</h5>
-                <span><a href="{{ $detail->url }}" target="_blank" rel="noopener noreferrer">{{ $detail->url }}</a></span>
+                <span><a href="{{ $detail->url }}" target="_blank" rel="noopener noreferrer">{{ $detail->url }}@include('admin.layouts.blank')</a></span>
             </li>
             <li class="list-group-item">
                 <h5>表示設定</h5>
