@@ -17,5 +17,5 @@ class FirstCategoryConsts
     ];
     public const CSV_FILE_DIR = 'first_category';
 
-    public const PAGENATE_LIST_LIMIT = 2;
+    public const PAGENATE_LIST_LIMIT = 10;
 }

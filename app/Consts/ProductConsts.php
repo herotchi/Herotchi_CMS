@@ -20,5 +20,5 @@ class ProductConsts
     public const PRODUCT_NEWS_UPDATE_MESSAGE = 'の製品情報が更新されました。';
 
     public const PAGENATE_LIST_LIMIT = 12;
-    public const ADMIN_PAGENATE_LIST_LIMIT = 2;
+    public const ADMIN_PAGENATE_LIST_LIMIT = 10;
 }

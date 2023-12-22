@@ -22,6 +22,6 @@ class NewsConsts
     ];
 
     public const TOP_LIST_LIMIT = 10;
-    public const PAGENATE_LIST_LIMIT = 10;
-    public const ADMIN_PAGENATE_LIST_LIMIT = 2;
+    public const PAGENATE_LIST_LIMIT = 15;
+    public const ADMIN_PAGENATE_LIST_LIMIT = 20;
 }
