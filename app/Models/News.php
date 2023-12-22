@@ -51,6 +51,10 @@ class News extends Model
             return $query->where('title', 'like', "%{$data['title']}%");
         });
 
+        $query->when(Arr::exists($data, 'link_flg') && $data['link_flg'], function ($query) use ($data) {
+            return $query->whereIn('link_flg', $data['link_flg']);
+        });
+
         $query->when(Arr::exists($data, 'release_date_from') && $data['release_date_from'], function ($query) use ($data) {
             return $query->where('release_date', '>=',  $data['release_date_from']);
         });
