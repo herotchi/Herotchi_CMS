@@ -30,4 +30,5 @@
         {{ $lists->withQueryString() }}
     </div>
 </div>
+@include('layouts.page_top')
 @endsection
