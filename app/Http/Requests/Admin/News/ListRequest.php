@@ -12,6 +12,7 @@ class ListRequest extends FormRequest
 {
     private $forms = [
         'title',
+        'link_flg',
         'release_date_from',
         'release_date_to',
         'release_flg',
@@ -35,6 +36,8 @@ class ListRequest extends FormRequest
         return [
             //
             'title' => 'bail|nullable|string|max:' . NewsConsts::TITLE_LENGTH_MAX,
+            'link_flg' => 'bail|nullable|array',
+            'link_flg.*' => Rule::in(array_keys(NewsConsts::LINK_FLG_LIST)),
             'release_date_from' => 'bail|nullable|date_format:Y-m-d|after_or_equal:2019/01/01|before_or_equal:2037/12/31',
             'release_date_to' => 'bail|nullable|date_format:Y-m-d|after_or_equal:2019/01/01|before_or_equal:2037/12/31|after_or_equal:release_date_from',
             'release_flg' => 'bail|nullable|array',
@@ -49,7 +52,7 @@ class ListRequest extends FormRequest
 
         foreach ($this->forms as $form) {
             if (!Arr::exists($data, $form)) {
-                if ($form === 'release_flg') {
+                if ($form === 'link_flg' || $form === 'release_flg') {
                     $data[$form] = array();
                 } else {
                     $data[$form] = null;
