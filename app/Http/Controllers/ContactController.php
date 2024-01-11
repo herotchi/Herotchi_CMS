@@ -51,7 +51,12 @@ class ContactController extends Controller
 
     public function complete(Request $request)
     {
-        $no = $request->session()->get('no');
+        if ($request->session()->has('no')) {
+            $no = $request->session()->get('no');
+        } else {
+            return redirect()->route('top')->with('msg_failure', 'セッション期限が切れました。');
+        }
+
         return view('contact.complete', compact('no'));
     }
     
