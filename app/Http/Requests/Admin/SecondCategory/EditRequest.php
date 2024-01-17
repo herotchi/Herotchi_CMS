@@ -56,7 +56,9 @@ class EditRequest extends FormRequest
 
                 // 元の自分自身の中カテゴリ名を除く、中カテゴリ名と入力値が重複しているかチェック
                 // ただし、紐づいている大カテゴリが違う場合は重複とならない
-                if (Arr::exists($data, 'id') && Arr::exists($data, 'first_category_id') && Arr::exists($data, 'name')) {
+                if ($validator->errors()->has('id') === false 
+                && $validator->errors()->has('first_category_id') === false
+                && $validator->errors()->has('name') === false) {
                     $model = new SecondCategory();
                     $secondCategory = $model->where('first_category_id', $data['first_category_id'])->where('name', $data['name'])->first();
                     if ($secondCategory && ((string)$secondCategory->id !== $data['id'])) {

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Admin\Product;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Validation\Validator;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
-use App\Models\SecondCategory;
+use App\Models\Product;
 
 use App\Consts\ProductConsts;
 
@@ -16,8 +15,7 @@ class ListRequest extends FormRequest
     private $forms = [
         'first_category_id',
         'second_category_id',
-        'name',
-        'release_flg',
+        'keyword',
     ];
 
 
@@ -38,11 +36,9 @@ class ListRequest extends FormRequest
     {
         return [
             //
+            'keyword' => 'bail|nullable|string|max:' . ProductConsts::KEYWORD_LENGTH_MAX,
             'first_category_id' => 'bail|nullable|integer|exists:first_categories,id',
             'second_category_id' => 'bail|nullable|integer|exists:second_categories,id',
-            'name' => 'bail|nullable|string|max:' . ProductConsts::NAME_LENGTH_MAX,
-            'release_flg' => 'bail|nullable|array',
-            'release_flg.*' => Rule::in(array_keys(ProductConsts::RELEASE_FLG_LIST)),
         ];
     }
 
@@ -53,23 +49,11 @@ class ListRequest extends FormRequest
 
         foreach ($this->forms as $form) {
             if (!Arr::exists($data, $form)) {
-                if ($form === 'release_flg') {
-                    $data[$form] = array();
-                } else {
-                    $data[$form] = null;
-                }
+                $data[$form] = null;
             }
         }
 
         return $data;
-    }
-
-
-    public function attributes()
-    {
-        return [
-            'name' => '製品名',
-        ];
     }
 
 
@@ -80,18 +64,23 @@ class ListRequest extends FormRequest
                 $data = $validator->valid();
 
                 // 製品の大カテゴリと中カテゴリが紐づいているかチェック
-                if ($validator->errors()->has('first_category_id') === false && $validator->errors()->has('second_category_id') === false
-                 && Arr::exists($data, 'first_category_id') && Arr::exists($data, 'second_category_id') 
-                 && $data['first_category_id'] && $data['second_category_id']) {
-                    $model = new SecondCategory();
+                if ($validator->errors()->has('first_category_id') === false && $validator->errors()->has('second_category_id') === false 
+                && Arr::exists($data, 'first_category_id') && Arr::exists($data, 'second_category_id') 
+                && $data['first_category_id'] && $data['second_category_id']) {
+                    $model = new Product();
                     $result = $model
                         ->where('first_category_id', $data['first_category_id'])
-                        ->where('id', $data['second_category_id'])
+                        ->where('second_category_id', $data['second_category_id'])
+                        ->where('release_flg', ProductConsts::RELEASE_FLG_ON)
                         ->exists();
 
                     if (!$result) {
                         $validator->errors()->add('second_category_id', '大カテゴリと紐づいていない中カテゴリが選択されました。');
                     }
+                }
+
+                if ($validator->errors()->any()) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
                 }
             }
         ];

@@ -24,7 +24,7 @@ body {
 @section('content')
 <div class="no-header">
     <div class="text-center">
-        <img class="mb-4" src="{{ asset('img/kiboom.png') }}" alt="" width="57" height="57">
+        <img class="mb-4" src="{{ asset('img/Herotchi_CMS.png') }}" alt="" width="57" height="57">
         <h1 class="h3 mb-3 fw-normal">管理画面ログイン</h1>
     </div>
     <form method="POST" action="{{ route('admin.auth.login') }}" novalidate>

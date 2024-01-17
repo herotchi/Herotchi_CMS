@@ -83,4 +83,28 @@ class Media extends Model
         $media->delete();
         Storage::delete('public/' . MediaConsts::IMAGE_FILE_DIR . '/' . $previousImages[2]);
     }
+
+
+    public function getCarousels()
+    {
+        $query = $this::query();
+        $query->where('media_flg', MediaConsts::MEDIA_FLG_CAROUSEL);
+        $query->where('release_flg', MediaConsts::RELEASE_FLG_ON);
+        $query->orderBy('id', 'desc');
+        $lists = $query->get();
+
+        return $lists;
+    }
+
+
+    public function getPickUps()
+    {
+        $query = $this::query();
+        $query->where('media_flg', MediaConsts::MEDIA_FLG_PICKUP);
+        $query->where('release_flg', MediaConsts::RELEASE_FLG_ON);
+        $query->orderBy('id', 'desc');
+        $lists = $query->get();
+
+        return $lists;
+    }
 }

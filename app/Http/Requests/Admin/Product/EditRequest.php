@@ -62,7 +62,7 @@ class EditRequest extends FormRequest
                 }
 
                 // 製品の大カテゴリと中カテゴリが紐づいているかチェック
-                if (Arr::exists($data, 'first_category_id') && Arr::exists($data, 'second_category_id')) {
+                if ($validator->errors()->has('first_category_id') === false && $validator->errors()->has('second_category_id') === false) {
                     $model = new SecondCategory();
                     $result = $model
                         ->where('first_category_id', $data['first_category_id'])

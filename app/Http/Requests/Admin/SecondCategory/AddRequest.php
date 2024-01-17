@@ -50,7 +50,7 @@ class AddRequest extends FormRequest
                 $data = $validator->valid();
 
                 // 同じ大カテゴリ内で中カテゴリ名が重複しているかチェック
-                if (Arr::exists($data, 'first_category_id') && Arr::exists($data, 'name')) {
+                if ($validator->errors()->has('first_category_id') === false && $validator->errors()->has('name') === false) {
                     $model = new SecondCategory();
                     $result = $model
                         ->where('first_category_id', $data['first_category_id'])

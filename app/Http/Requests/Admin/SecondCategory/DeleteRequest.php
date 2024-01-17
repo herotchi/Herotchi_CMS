@@ -38,14 +38,11 @@ class DeleteRequest extends FormRequest
         return [
             function (Validator $validator) {
 
-                if ($validator->errors()->has('id')) {
-                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
-                }
-
                 $data = $validator->valid();
 
-                // 削除対象の中カテゴリが製品と紐づいているかチェック
-                if (Arr::exists($data, 'id')) {
+                if ($validator->errors()->has('id')) {
+                    $this->session()->flash('msg_failure', '不正な値が入力されました。');
+                } else {// 削除対象の中カテゴリが製品と紐づいているかチェック
                     $model = new SecondCategory();
                     $secondCategory = $model->find($data['id']);
 

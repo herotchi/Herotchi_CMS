@@ -13,10 +13,12 @@ class ProductConsts
         self::RELEASE_FLG_ON => '表示',
         self::RELEASE_FLG_OFF => '非表示',
     ];
+    public const KEYWORD_LENGTH_MAX = 30;
 
     public const IMAGE_FILE_DIR = 'products';
     public const PRODUCT_NEWS_INSERT_MESSAGE = 'が製品情報に追加されました。';
     public const PRODUCT_NEWS_UPDATE_MESSAGE = 'の製品情報が更新されました。';
 
-    public const PAGENATE_LIST_LIMIT = 2;
+    public const PAGENATE_LIST_LIMIT = 12;
+    public const ADMIN_PAGENATE_LIST_LIMIT = 10;
 }

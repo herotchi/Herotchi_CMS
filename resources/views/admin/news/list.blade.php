@@ -22,6 +22,20 @@
                     <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                 </div>
 
+                <label class="form-label">リンク設定</label>
+                <div class="btn-group mt-0">
+                    @foreach(NewsConsts::LINK_FLG_LIST as $key => $value)
+                    <input type="checkbox" class="btn-check" name="link_flg[]" id="link_flg_{{ $key }}"
+                        value="{{ $key }}" autocomplete="off" @if(old('link_flg')==$key || in_array($key, $input['link_flg'])) checked @endif>
+                    <label class="btn btn-outline-success form-control{{ $errors->has('link_flg') ? ' is-invalid' : '' }}"
+                        for="link_flg_{{ $key }}">{{ $value }}</label>
+                    @endforeach
+                </div>
+                <div class="mt-0{{ $errors->has('link_flg') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('link_flg') }}</div>
+                <div class="mt-0{{ $errors->has('link_flg.*') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('link_flg.*') }}</div>
+
                 <div class="col-md-6">
                     <label for="release_date_from" class="form-label">公開日～</label>
                     <input type="date" id="release_date_from"
@@ -49,6 +63,8 @@
                 </div>
                 <div class="mt-0{{ $errors->has('release_flg') ? ' is-invalid' : '' }}"></div>
                 <div class="invalid-feedback">{{ $errors->first('release_flg') }}</div>
+                <div class="mt-0{{ $errors->has('release_flg.*') ? ' is-invalid' : '' }}"></div>
+                <div class="invalid-feedback">{{ $errors->first('release_flg.*') }}</div>
 
             </div>
         </div>
@@ -72,6 +88,7 @@
             <thead>
                 <tr>
                     <th scope="col">タイトル</th>
+                    <th>リンク設定</th>
                     <th>公開日</th>
                     <th>表示設定</th>
                 </tr>
@@ -83,10 +100,13 @@
                         <a href="{{ route('admin.news.detail', ['id' => $list->id]) }}">{{ $list->title }}</a>
                     </td>
                     <td>
+                        {{ NewsConsts::LINK_FLG_LIST[$list->link_flg] }}
+                    </td>
+                    <td>
                         {{ $list->release_date->format('Y/m/d') }}
                     </td>
                     <td>
-                    {{ NewsConsts::RELEASE_FLG_LIST[$list->release_flg] }}
+                        {{ NewsConsts::RELEASE_FLG_LIST[$list->release_flg] }}
                     </td>
                 </tr>
             @endforeach

@@ -1,5 +1,5 @@
-@extends('admin.layouts.app')
-@section('title', '管理画面/TOP')
+@extends('layouts.app')
+@section('title', 'TOP')
 
 @section('content')
 <div class="row">
@@ -13,7 +13,7 @@
             <div class="carousel-inner">
                 @foreach($carousels as $carousel)
                 <div class="carousel-item @if($loop->first) active @endif">
-                    <a href="{{ route('admin.media.detail', ['id' => $carousel->id]) }}">
+                    <a href="{{ $carousel->url }}">
                         <img src="{{ asset($carousel->image) }}" class="d-block w-100" alt="{{ $carousel->alt }}">
                     </a>
                 </div>    
@@ -42,7 +42,7 @@
                 @foreach($pickUps as $pickUp)
                 <div class="card text-bg-light mb-2">
                     <div class="card-body">
-                        <a href="{{ route('admin.media.detail', ['id' => $pickUp->id]) }}">
+                        <a href="{{ $pickUp->url }}">
                             <img src="{{ asset($pickUp->image) }}" class="d-block w-100 h-auto" alt="{{ $carousel->alt }}">
                         </a>
                     </div>
@@ -64,12 +64,18 @@
                         @foreach($news as $list)
                         <p class="mb-1">{{ $list->release_date->format('Y年m月d日') }}</p>
                         <p class="ms-4 mb-4">
-                            <a href="{{ route('admin.news.detail', ['id' => $list->id]) }}">
+                        @if ($list->link_flg == NewsConsts::LINK_FLG_ON)
+                            <a href="{{ $list->url }}" target="_blank" rel="noopener noreferrer">
+                                {{ $list->title }}@include('layouts.blank')
+                            </a>
+                        @else
+                            <a href="{{ route('news.detail', ['id' => $list->id]) }}">
                                 {{ $list->title }}
                             </a>
+                        @endif
                         </p>
                         @endforeach
-                        <a class="float-end" href="{{ route('admin.news.list') }}">
+                        <a class="float-end" href="{{ route('news.list') }}">
                             <p>過去のお知らせを見る</p>
                         </a>
                     </div>
@@ -78,4 +84,5 @@
         </div>
     </div>
 </div>
+@include('layouts.page_top')
 @endsection

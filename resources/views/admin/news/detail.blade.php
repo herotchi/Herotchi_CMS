@@ -25,7 +25,7 @@
             @if ($detail->link_flg == NewsConsts::LINK_FLG_ON)
             <li class="list-group-item">
                 <h5>URL</h5>
-                <span><a href="{{ $detail->url }}" target="_blank" rel="noopener noreferrer">{{ $detail->url }}</a></span>
+                <span>{{ $detail->url }}</span>
             </li>
             @else 
             <li class="list-group-item">

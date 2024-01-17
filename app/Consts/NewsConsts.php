@@ -13,7 +13,7 @@ class NewsConsts
         self::LINK_FLG_OFF => 'なし',
     ];
     public const URL_LENGTH_MAX = 255;
-    public const OVERVIEW_LENGTH_MAX = 1000;
+    public const OVERVIEW_LENGTH_MAX = 2000;
     public const RELEASE_FLG_ON = 1;
     public const RELEASE_FLG_OFF = 2;
     public const RELEASE_FLG_LIST = [
@@ -21,5 +21,7 @@ class NewsConsts
         self::RELEASE_FLG_OFF => '非表示',
     ];
 
-    public const PAGENATE_LIST_LIMIT = 2;
+    public const TOP_LIST_LIMIT = 10;
+    public const PAGENATE_LIST_LIMIT = 15;
+    public const ADMIN_PAGENATE_LIST_LIMIT = 20;
 }

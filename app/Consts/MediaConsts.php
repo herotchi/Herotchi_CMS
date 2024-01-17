@@ -23,5 +23,5 @@ class MediaConsts
 
     public const IMAGE_FILE_DIR = 'media';
 
-    public const PAGENATE_LIST_LIMIT = 8;
+    public const PAGENATE_LIST_LIMIT = 12;
 }
