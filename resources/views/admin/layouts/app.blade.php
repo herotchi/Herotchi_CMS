@@ -8,8 +8,8 @@
 
         <!-- favicon -->
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-        <link rel="apple-touch-icon" href="{{ asset('img/Hetochi_CMS.png') }}">
-        <link rel="icon" type="image/png" href="{{ asset('img/Hetochi_CMS.png') }}">
+        <link rel="apple-touch-icon" href="{{ asset('img/Herotchi_CMS.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('img/Herotchi_CMS.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
