@@ -28,7 +28,7 @@
             </li>
             <li class="list-group-item">
                 <h5>製品画像</h5>
-                <img src="{{ asset($detail->image) }}">
+                <img src="{{ asset($detail->image) }}" class="w-100">
             </li>
             <li class="list-group-item">
                 <h5>製品詳細</h5>
