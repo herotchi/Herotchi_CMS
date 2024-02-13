@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
+
 use App\Consts\ContactConsts;
 
 class ContactController extends Controller
@@ -44,6 +47,9 @@ class ContactController extends Controller
             $model = new Contact();
             $no = $model->insertContact($input);
         });
+
+        // メール送信処理
+        Mail::to($input['mail_address'])->send(new ContactMail($input, $no));
         
         return redirect()->route('contact.complete')->with('no', $no);
     }
