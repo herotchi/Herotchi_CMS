@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title', '製品一覧')
+@section('title', '製品情報一覧')
 
 @section('content')
 <nav aria-label="パンくずリスト">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('top') }}">TOP</a></li>
-        <li class="breadcrumb-item active" aria-current="page">製品一覧</li>
+        <li class="breadcrumb-item active" aria-current="page">製品情報一覧</li>
     </ol>
 </nav>
 <div class="row">
