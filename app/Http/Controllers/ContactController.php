@@ -50,6 +50,8 @@ class ContactController extends Controller
 
         // メール送信処理
         Mail::to($input['mail_address'])->send(new ContactMail($input, $no));
+
+        $request->session()->forget('input');
         
         return redirect()->route('contact.complete')->with('no', $no);
     }
