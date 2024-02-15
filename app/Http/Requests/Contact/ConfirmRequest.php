@@ -46,7 +46,12 @@ class ConfirmRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        $this->merge($this->session()->get('input'));
+        if ($this->session()->has('input')) {
+            $this->merge($this->session()->get('input'));
+        } else {
+            $this->redirectRoute = 'top';
+            $this->session()->flash('msg_failure', 'セッション期限が切れました。');
+        }
     }
 
 
